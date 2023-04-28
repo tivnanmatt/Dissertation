@@ -1,0 +1,2 @@
+pip install -U jupyter-book
+jupyter-book build dissertation/
