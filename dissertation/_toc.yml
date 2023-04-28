@@ -2,8 +2,14 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: Introduction.md
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: Instrumentation.md
+- file: Algorithms.md
+- file: ImageQuality.md
+- file: SSF.md
+- file: Hybrid.md
+- file: ImmunoContrast.md
+- file: TunableNN.md
+- file: FourierDiffusion.md
+
