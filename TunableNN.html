@@ -363,12 +363,20 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">ABSTRACT</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">INTRODUCTION</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">METHODS</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation">Probabilistic Model of CT Data Acquisition and Image Formation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-bias-in-reconstructed-images">Variance and Bias in Reconstructed Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation">Probabilistic Model of CT Data Acquisition and Image Formation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-bias-in-reconstructed-images">Variance and Bias in Reconstructed Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean">Mean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bias">Bias</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patient-population-model">Patient Population Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-measurement-model">Physical Measurement Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-reconstruction-via-filtered-back-projection">Image Reconstruction via Filtered Back-Projection</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-reconstruction-via-model-based-iterative-statistical-estimation">Image Reconstruction via Model-Based Iterative Statistical Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-reconstruction-via-deep-neural-networks">Image Reconstruction via Deep Neural Networks</a></li>
 </ul>
             </nav>
         </div>
@@ -404,19 +412,88 @@ The patient, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, i
 \[p(\mathbf{x}, \mathbf{y}, \mathbf{\hat{x}}) = p(\mathbf{x})p(\mathbf{y}|\mathbf{x})p(\mathbf{\hat{x}}|\mathbf{y})\]</div>
 <p>Notice that the joint distribution can be broken into three parts. The term <span class="math notranslate nohighlight">\(p(\mathbf{x})\)</span> represents the patient population, <span class="math notranslate nohighlight">\(p(\mathbf{y}|\mathbf{x})\)</span> is the physical model of data acquisition including noise, and <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y})\)</span> represents image reconstruction, which we assume is a deterministic discrete-to-discrete transformation, <span class="math notranslate nohighlight">\(f_\theta: \boldsymbol{\mathcal{Y}} \longrightarrow \boldsymbol{\mathcal{X}}\)</span>. That is, <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y}) = \delta(\mathbf{\hat{x}} - f_{\theta}(\mathbf{y}))\)</span>, where  <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> is a vector of reconstruction hyperparameters (e.g., FBP cutoff frequency or DNN weights). Note that we have also used the property <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y}, \mathbf{x})\)</span> = <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y})\)</span>. Since the reconstruction is a deterministic function of the measurements, we know that <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span> is conditionally independent of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, if given <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>. We aim to apply this probabilistic model to understand and optimize the quality of images to improve expected health outcomes for patients.</p>
 <p><img alt="Probabilistic graphical model of CT data acquisition and image formation." src="_images/probModel.png" /></p>
+</section>
 <section id="variance-and-bias-in-reconstructed-images">
-<h4>Variance and Bias in Reconstructed Images<a class="headerlink" href="#variance-and-bias-in-reconstructed-images" title="Permalink to this heading">#</a></h4>
-<p>We are often interested in the joint distribution of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span> which is given by the marginal distribution,</p>
+<h3>Variance and Bias in Reconstructed Images<a class="headerlink" href="#variance-and-bias-in-reconstructed-images" title="Permalink to this heading">#</a></h3>
+<p>The joint distribution of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span> can be calculated by marginalizing over <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> as follows:</p>
 <div class="math notranslate nohighlight">
-\[p(\mathbf{x}, \mathbf{\hat{x}}) = \int p(\mathbf{x}, \mathbf{y}, \mathbf{\hat{x}}) d\mathbf{y}\]</div>
-<p>The mean of this distribution is given by,</p>
+\[p(\mathbf{x},\mathbf{\hat{x}}) = \int p(\mathbf{x},\mathbf{y},\mathbf{\hat{x}}) \mathbf{dy} = p(\mathbf{x}) \Big[ \int p(\mathbf{y}|\mathbf{x})p(\mathbf{\hat{x}}|\mathbf{y}) \mathbf{dy}\Big] = p(\mathbf{x}) p(\mathbf{\hat{x}} | \mathbf{x}) .\]</div>
+<p>Note that this distribution is broken into two parts; <span class="math notranslate nohighlight">\(p(\mathbf{x})\)</span> is the patient population model, and <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{x})\)</span> is the end-to-end CT imaging system model, which captures both data acquisition and image reconstruction. Image quality metrics such as noise or spatial resolution are (typically patient-dependent) properties of an imaging system which can be derived from <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{x})\)</span>.</p>
+<section id="mean">
+<h4>Mean<a class="headerlink" href="#mean" title="Permalink to this heading">#</a></h4>
+<p>For example, the mean response of the imaging system is given by:</p>
 <div class="math notranslate nohighlight">
-\[\mathbb{E}[\mathbf{\hat{x}}] = \int \mathbf{\hat{x}} p(\mathbf{x}, \mathbf{\hat{x}}) d\mathbf{x} d\mathbf{\hat{x}}\]</div>
-<p>The variance of this distribution is given by,</p>
+\[\boldsymbol{\mu}_{\mathbf{\hat{x}}|\mathbf{x}} = \mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[\mathbf{\hat{X}}|\mathbf{x}\Big]  = \int  p(\mathbf{\hat{x}}|\mathbf{x}) \enspace \mathbf{\hat{x}} \enspace \mathbf{d\hat{x}} = \int  \Big[\int  p(\mathbf{y}|\mathbf{x}) \delta(\mathbf{\hat{x}} - f_{\theta} ( \mathbf{y} )) \mathbf{dy}\Big] \enspace \mathbf{\hat{x}} \enspace \mathbf{d\hat{x}} \]</div>
 <div class="math notranslate nohighlight">
-\[\text{Var}[\mathbf{\hat{x}}] = \mathbb{E}[\mathbf{\hat{x}}^2] - \mathbb{E}[\mathbf{\hat{x}}]^2 = \int \mathbf{\hat{x}}^2 p(\mathbf{x}, \mathbf{\hat{x}}) d\mathbf{x} d\mathbf{\hat{x}} - \mathbb{E}[\mathbf{\hat{x}}]^2\]</div>
+\[= \int p(\mathbf{y}|\mathbf{x}) \Big[\int   \delta(\mathbf{\hat{x}} - f_{\theta} ( \mathbf{y} )) \enspace \mathbf{\hat{x}} \enspace \mathbf{d\hat{x}} \Big]  \mathbf{dy}  = \int p(\mathbf{y}|\mathbf{x}) \enspace f_{\theta} ( \mathbf{y} ) \enspace \mathbf{dy}.\]</div>
+</section>
+<section id="bias">
+<h4>Bias<a class="headerlink" href="#bias" title="Permalink to this heading">#</a></h4>
+<p>The corresponding bias (defined as the expected error) is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{b}_\mathbf{\hat{x}|x} =\mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[(\mathbf{\hat{X}}-\mathbf{x})|\mathbf{x}\Big]  = \int p(\mathbf{y}|\mathbf{x}) \Big[f_{\theta} ( \mathbf{y} )-\mathbf{x} \Big] \mathbf{dy} =  \boldsymbol{\mu}_{\mathbf{\hat{x}}|\mathbf{x}} - \mathbf{x}.\]</div>
+</section>
+<section id="covariance">
+<h4>Covariance<a class="headerlink" href="#covariance" title="Permalink to this heading">#</a></h4>
+<p>The covariance, which describes noise properties, is given by:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\Sigma}_{\mathbf{\hat{x}}|\mathbf{x}} = \mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[(\mathbf{\hat{X}} - \boldsymbol{\mu}_{\mathbf{\hat{x}}|\mathbf{x}})(\mathbf{\hat{X}} - \boldsymbol{\mu}_{\mathbf{\hat{x}}|\mathbf{x}})^T |\mathbf{x}\Big] = \int p(\mathbf{y}|\mathbf{x}) \enspace      \Big[ (f_{\theta} ( \mathbf{y} ) - \boldsymbol{\mu}_{\mathbf{\hat{x}}|\mathbf{x}})(f_{\theta} ( \mathbf{y} ) - \boldsymbol{\mu}_{\mathbf{\hat{x}}|\mathbf{x}})^T  \Big]     \enspace \mathbf{dy}.\]</div>
+<p>These expressions for bias and covariance describe two of the most important categories of image error. An imaging system with a high level of bias, <span class="math notranslate nohighlight">\(\mathbf{b}_\mathbf{\hat{x}|x}\)</span>, is inaccurate on average. Note that this includes all forms of mean error, not only zero-frequency offset, as the term ``bias’’ is sometimes used. Common forms of bias include spatial blur and artifacts due to miscalibration or other mismatches between the model used for data processing and the true physical object. An imaging system with a higher covariance, <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_{\mathbf{\hat{x}}|\mathbf{x}}\)</span> is imprecise and will produce noisier images which can make it harder to see clinically important features. The main topic of this work is a method to control the trade-off between variance and bias in reconstructed images in order to avoid potentially severe errors that negatively impact clinical decision-making. Samples from these distributions as well as the mean, bias, and standard deviation of output are shown in Figure~\ref{fig:biasVariance_example} to illustrate these mathematical terms. This example shows some common types of error, such as higher bias at edges, which corresponds to lower spatial resolution. The standard deviation map also shows higher noise inside the patient vs in the air regions, which may indicate the network has learned to implicitly identify air regions and remove almost all noise.</p>
+<p><img alt="probablity_distribution_samples" src="_images/probablity_distribution_samples.png" /></p>
 </section>
 </section>
+<section id="patient-population-model">
+<h3>Patient Population Model<a class="headerlink" href="#patient-population-model" title="Permalink to this heading">#</a></h3>
+<p>The marginal distribution, <span class="math notranslate nohighlight">\(p(\mathbf{x})\)</span>, models the population of patients. In practice, we do not have access to this distribution, but we can approximate expectations over this distribution using a dataset of patient images and assuming they are independent samples from <span class="math notranslate nohighlight">\(p(\mathbf{x})\)</span>. Using a database of CT images is a very common strategy for data-driven methods such as deep learning \cite{wang2020deep}. However, with this approach, the reference images are reconstructed CT images rather than true patient anatomies. These reconstructed images have noise and bias (e.g., blur, artifacts, etc.) and if they are used as the ground-truth supervised labels, the DNN will be trained to replicate the same sort of errors in the training images.</p>
+<p>As an alternative, we propose another method using a population of digital anthropomorphic phantoms, such as XCAT \cite{segars20104d}. The XCAT software takes a list of <span class="math notranslate nohighlight">\(N_\text{anatomy}\)</span> anatomical parameters (e.g., liver volume, trachea thickness) which we can collect into a vector space, <span class="math notranslate nohighlight">\(\boldsymbol{\mathcal{Z}} = \Re^{(N_\text{anatomy}\times 1)}\)</span>. The XCAT phantom generator is then represented by a deterministic discrete-to-discrete transformation <span class="math notranslate nohighlight">\(\boldsymbol{\mathcal{G}}:\boldsymbol{\mathcal{Z}}\longrightarrow \boldsymbol{\mathcal{X}}\)</span>. We model the anatomical parameters as a Gaussian distributed random vector <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> with mean <span class="math notranslate nohighlight">\(\boldsymbol{\mu_z}\)</span> and covariance <span class="math notranslate nohighlight">\(D\{\boldsymbol{\sigma_z^2}\}\)</span>, where the <span class="math notranslate nohighlight">\(D\{\cdot\}\)</span> notation indicates the diagonalization of a vector. Those parameters are passed to the XCAT generator to create a population of ground-truth patient images with varied anatomies. This way, we can compute population-level statistics using sample expectations over these images. While XCAT phantoms are not entirely realistic in terms of texture and the full range of anatomical variations, diseases, and disorders, these anatomical models are useful. In particular, this methodology is illustrative of the overall technique and provides access to the ground-truth attenuation, which we will use to evaluate bias in reconstructed images. In the future, high-fidelity clinical images or more sophisticated anatomical models could be used to model the ground truth patient population more accurately.</p>
+</section>
+<section id="physical-measurement-model">
+<h3>Physical Measurement Model<a class="headerlink" href="#physical-measurement-model" title="Permalink to this heading">#</a></h3>
+<p>The measurement likelihood, <span class="math notranslate nohighlight">\(p(\mathbf{y}|\mathbf{x})\)</span>, represents the physical model of CT data acquisition including noise. For this work, we will use the following nonlinear mono-energetic forward model with uncorrelated Gaussian noise as follows:</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf{y}|\mathbf{x}) = \mathcal{N}\Big(\mathbf{y}; \boldsymbol{\mu_y}(\mathbf{x}), \boldsymbol{\Sigma_y}(\mathbf{x}) \Big) \quad , \quad \boldsymbol{\mu_y}(\mathbf{x}) = \mathbf{B} \exp{\Big(-\mathbf{A} \mathbf{x}\Big)} \quad , \quad \boldsymbol{\Sigma_y}(\mathbf{x}) = D\Big\{\boldsymbol{\mu_y}(\mathbf{x})\Big\}  .\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the forward projector describing line integral sampling geometry and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a projection-domain linear operator which can model gain and blur effects. The exponential operation is element-wise. The variance is set equal to the mean model, which is designed to approximate a Poisson distribution associated with quantum noise. Again, more sophisticated models may be adopted and applied using the same framework.</p>
+</section>
+<section id="image-reconstruction-via-filtered-back-projection">
+<h3>Image Reconstruction via Filtered Back-Projection<a class="headerlink" href="#image-reconstruction-via-filtered-back-projection" title="Permalink to this heading">#</a></h3>
+<p>The third term in equation \eqref{eq:joint_pdf} is <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y}) = \delta(\mathbf{\hat{x}} - f_{\theta} ( \mathbf{y} ))\)</span>, which represents image reconstruction. A common approach to reconstruct CT images is filtered back-projection with an apodization filter, which can be written as:</p>
+<div class="math notranslate nohighlight">
+\[f_\sigma(\mathbf{y}) =  \mathbf{A^T} \boldsymbol{P}_\sigma [ -\log \frac{\mathbf{y}}{\boldsymbol{\mu_y(0)}}],\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{P}_\sigma\)</span> is a projection-domain linear operator consisting of, for example, projection weighting, ramp filtration, and an apodization filter. <span class="math notranslate nohighlight">\(\mathbf{A^T}\)</span> is the back-projector, which is the transpose of the forward-projector <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. We use a Gaussian apodization filter, with the hyperparameter <span class="math notranslate nohighlight">\(\sigma\)</span> representing spatial-domain full width at half maximum.  We will use this classical image reconstruction algorithm as a reference to evaluate our proposed method.</p>
+</section>
+</section>
+<section id="image-reconstruction-via-model-based-iterative-statistical-estimation">
+<h2>Image Reconstruction via Model-Based Iterative Statistical Estimation<a class="headerlink" href="#image-reconstruction-via-model-based-iterative-statistical-estimation" title="Permalink to this heading">#</a></h2>
+<p>Another approach is to perform image reconstruction via a statistical estimation algorithm such as penalized-likelihood model-based iterative reconstruction (PL-MBIR) which is given by</p>
+<div class="math notranslate nohighlight">
+\[
+    f_\beta(\mathbf{y}) = \underset{\mathbf{x}}{\text{argmin}} \quad \frac{1}{2} (\mathbf{y} - \boldsymbol{\mu_y}(\mathbf{x}))^T \boldsymbol{\Sigma_y}^{-1} (\mathbf{y} - \boldsymbol{\mu_y}(\mathbf{x})) + \beta \mathbf{x}^T \boldsymbol{\nabla^2} \mathbf{x} .
+\]</div>
+<p>Here, the first term is derived from the negative logarithm of \eqref{eq:likelihood} and encourages agreement between the image reconstruction and the measurement data, and the second term is a quadratic roughness penalty which encourages smoothness (and reduces noise). The operator, <span class="math notranslate nohighlight">\(\boldsymbol{\nabla^2}\)</span>, is the discrete Laplacian, which is a type of high-pass filter and serves to put a penalty weight on higher spatial frequencies where  higher noise is predicted by the model. We optimize this nonlinear weighted least squares objective function using the algorithm described in \cite{tilley2015model}.</p>
+<p>The hyperparameter <span class="math notranslate nohighlight">\(\beta\)</span> can be viewed as a tunable dial which controls the trade-off between noise and spatial blur. This way, it is possible to have different protocols for applications with greater emphasis on either noise reduction or spatial resolution. Inspired by this general structure, we aim  to provide a similar method of tunable control over output image qualities for deep learning based image formation models.</p>
+</section>
+<section id="image-reconstruction-via-deep-neural-networks">
+<h2>Image Reconstruction via Deep Neural Networks<a class="headerlink" href="#image-reconstruction-via-deep-neural-networks" title="Permalink to this heading">#</a></h2>
+<p>Another approach to CT image formation is to train a DNN for image reconstruction, restoration, or denoising. DNN models have numerous network weight parameters, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, which must be trained to minimize some loss function using large datasets of CT images. One of the most commonly used loss functions for deep learning image formation is mean-squared error (MSE) for which the network training process can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+     \boldsymbol{\hat{\theta}} = \underset{\boldsymbol{\theta}}{\text{argmin}} \enspace \mathbb{E}_\mathbf{\mathbf{X},\hat{X}}\Big[||\mathbf{\hat{X}}-\mathbf{X}||^2\Big]  = \mathbb{E}_{\mathbf{X}}\Big[\mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[ (\mathbf{\hat{X}}-\mathbf{x})^T(\mathbf{\hat{X}} - \mathbf{x}) | \mathbf{X}\Big]\Big] 
+\]</div>
+<p>The inner term is the conditional expectation, <span class="math notranslate nohighlight">\(\mathbb{E}_\mathbf{\hat{X}|\mathbf{X}}[(\mathbf{\hat{X}}-\mathbf{x})^T(\mathbf{\hat{X}}-\mathbf{x})|\mathbf{x}]\)</span> which can be expanded and written as a function of bias from \eqref{eq:bias} and covariance from \eqref{eq:covariance} as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[(\mathbf{\hat{X}}-\mathbf{x})^T(\mathbf{\hat{X}}-\mathbf{x})|\mathbf{x}\Big] = \mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[(\mathbf{\hat{X}}- \boldsymbol{\mu}_\mathbf{\hat{x}|x} + \mathbf{b}_\mathbf{\hat{x}|x})^T(\mathbf{\hat{X}}-\boldsymbol{\mu}_\mathbf{\hat{x}|x} + \mathbf{b}_\mathbf{\hat{x}|x})|\mathbf{x}\Big] 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    = \mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[(\mathbf{\hat{X}}- \boldsymbol{\mu}_\mathbf{\hat{x}|x} )^T(\mathbf{\hat{X}}-\boldsymbol{\mu}_\mathbf{\hat{x}|x})|\mathbf{x}\Big]  + \mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}\Big[( \mathbf{b}_\mathbf{\hat{x}|x})^T(\mathbf{b}_\mathbf{\hat{x}|x})|\mathbf{x}\Big]  = \text{Tr}\Big\{\boldsymbol{\Sigma}_\mathbf{\hat{x}|x}\Big\} +  \mathbf{b}_\mathbf{\hat{x}|x}^T \mathbf{b}_\mathbf{\hat{x}|x}. \nonumber
+\]</div>
+<p>Note that this formula shows that MSE can be decomposed into the expected sum, <span class="math notranslate nohighlight">\(\text{Tr}\Big\{\boldsymbol{\Sigma}_\mathbf{\hat{x}|x}\Big\}\)</span>, which is a sum of variances for each voxel, and <span class="math notranslate nohighlight">\(\mathbf{b}_\mathbf{\hat{x}|x}^T \mathbf{b}_\mathbf{\hat{x}|x}\)</span>, which is the sum of squared biases. Therefore, training a network to minimize MSE can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{\hat{\theta}} = \underset{\boldsymbol{\theta}}{\text{argmin}} \quad \mathbb{E}_\mathbf{X}\Big[\text{Tr}\Big\{\boldsymbol{\Sigma}_\mathbf{\hat{x}|x}\Big\} +  \mathbf{b}_\mathbf{\hat{x}|x}^T \mathbf{b}_\mathbf{\hat{x}|x}\Big].
+\]</div>
+<p>In practice, the minimizer is implemented via numerical optimization methods such as stochastic gradient descent. The expectation over <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is approximated by sampling a batch of patient images and computing the sample mean over the batch. Typically, for a given image in the database, <span class="math notranslate nohighlight">\(\mathbf{X}=\mathbf{x_i}\)</span>, there is only one noise realization of <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> and so during training, only one realization of the output, <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span>, is available. Therefore, the expectation, <span class="math notranslate nohighlight">\(\mathbb{E}_{\mathbf{\hat{X}}|\mathbf{X}}[(\mathbf{\hat{X}}-\mathbf{x})^T(\mathbf{\hat{X}}-\mathbf{x})|\mathbf{x}]\)</span>, must be replaced by the squared error for one sample <span class="math notranslate nohighlight">\((\mathbf{\hat{x_i}}-\mathbf{x_i})^T(\mathbf{\hat{x}_i}-\mathbf{x_i})\)</span>. On the other hand, if multiple noise realizations of <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}=f_{\theta} ( \mathbf{y} )\)</span> were available, it would be possible to directly apply \eqref{eq:bias} and \eqref{eq:covariance} to compute the sample bias and covariance as well as the optimization in \eqref{eq:MSE_training}. The next section presents a training scheme which uses multiple noise realizations to explicitly compute and control the variance and bias of DNN output images.</p>
 </section>
 </section>
 
@@ -490,12 +567,20 @@ The patient, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, i
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">ABSTRACT</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">INTRODUCTION</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">METHODS</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation">Probabilistic Model of CT Data Acquisition and Image Formation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-bias-in-reconstructed-images">Variance and Bias in Reconstructed Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation">Probabilistic Model of CT Data Acquisition and Image Formation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-bias-in-reconstructed-images">Variance and Bias in Reconstructed Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean">Mean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bias">Bias</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patient-population-model">Patient Population Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-measurement-model">Physical Measurement Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-reconstruction-via-filtered-back-projection">Image Reconstruction via Filtered Back-Projection</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-reconstruction-via-model-based-iterative-statistical-estimation">Image Reconstruction via Model-Based Iterative Statistical Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-reconstruction-via-deep-neural-networks">Image Reconstruction via Deep Neural Networks</a></li>
 </ul>
   </nav></div>
 
