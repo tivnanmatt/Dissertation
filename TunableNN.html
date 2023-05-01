@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Tunable Neural Networks &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
+    <title>Tunable Neural Networks for CT Image Formation &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
   
   
   
@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'TunableNN';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -163,7 +165,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="SSF.html">Spatial Spectral Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Hybrid.html">Hybrid Spectral CT Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ImmunoContrast.html">Immuno-Contrast CT</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tunable Neural Networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tunable Neural Networks for CT Image Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FourierDiffusion.html">Fourier Diffusion Models</a></li>
 </ul>
 
@@ -335,7 +337,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -346,11 +350,27 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tunable Neural Networks</h1>
+    <h1>Tunable Neural Networks for CT Image Formation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">ABSTRACT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">INTRODUCTION</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">METHODS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation">Probabilistic Model of CT Data Acquisition and Image Formation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-bias-in-reconstructed-images">Variance and Bias in Reconstructed Images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -360,8 +380,44 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tunable-neural-networks">
-<h1>Tunable Neural Networks<a class="headerlink" href="#tunable-neural-networks" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tunable-neural-networks-for-ct-image-formation">
+<h1>Tunable Neural Networks for CT Image Formation<a class="headerlink" href="#tunable-neural-networks-for-ct-image-formation" title="Permalink to this heading">#</a></h1>
+<section id="abstract">
+<h2>ABSTRACT<a class="headerlink" href="#abstract" title="Permalink to this heading">#</a></h2>
+<p>Optimization of CT image quality typically involves balancing variance and bias. In traditional filtered back-projection, this trade-off is controlled by the filter cutoff frequency. In model-based iterative reconstruction, the regularization strength parameter often serves the same function. Deep neural networks (DNNs) typically do not provide this tunable control over output image properties. Models are often trained to minimize the expected mean squared error, which penalizes both variance and bias in image outputs, but does not offer any control over the trade-off between the two. In this work, we propose a method for controlling the output image properties of neural networks with a new loss function called weighted covariance and bias (WCB). Our proposed method uses multiple noise realizations of the input images during training to allow for separate weighting matrices for the variance and bias penalty terms. Moreover, we show that tuning these weights enables targeted penalization of specific image features with spatial frequency domain penalties. To evaluate our method, we present a simulation study using digital anthropomorphic phantoms, physical simulation of CT measurements, and image formation with various algorithms. We show that the WCB loss function offers a greater degree of control over trade-offs between variance and bias, while MSE provides only one specific image quality configuration. We also show that WCB can be used to control specific image properties including variance, bias, spatial resolution, and the noise correlation of neural network outputs. Finally, we present a method to optimize the proposed weights for a spiculated lung nodule shape discrimination task. Our results demonstrate this new image quality can control the image properties of DNN outputs and optimize image quality for task-specific performance.</p>
+</section>
+<section id="introduction">
+<h2>INTRODUCTION<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Medical CT systems use the transmission of high-energy x-ray photons from multiple view angles to reconstruct the spatial distribution of an object’s attenuation properties. The resulting images are used by clinicians to inform clinical decisions, such as diagnosis, surgical guidance, or therapy planning. Ideally, CT images should be both precise and accurate to minimize errors in clinical decision making. In this work, we use random signal analysis to model the propagation of signals, noise, and bias in CT data processing, where precision is characterized by the variance of random variables, and accuracy is characterized by their bias.</p>
+<p>The photon count in CT data processing is typically modeled as a Poisson-distributed random variable with a single parameter, <span class="math notranslate nohighlight">\(\lambda\)</span>, which is both the mean and variance, due to practical engineering limitations that do not allow most x-ray sources to control the exact number of photons transmitted. Since the photon count is typically above one thousand, even for low-dose CT, the distribution is well approximated by a Gaussian-distributed random variable with mean <span class="math notranslate nohighlight">\(\mu = \lambda\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2 = \lambda\)</span>. This quantum noise is one physical source of uncertainty leading to noise in CT measurements.</p>
+<p>A full CT dataset can be expressed as a list of random variables or a random vector, where the elements of this vector may or may not be independently distributed depending on the type of detector and other factors. For example, modeling measurements as jointly Gaussian is a reasonable assumption for a flat-panel indirect detector, where the measurements of neighboring pixels are correlated due to light spreading in the scintillator layer.</p>
+<p>CT is a computational imaging modality, meaning the measured data must be transformed into images via a reconstruction algorithm. In this work, we focus on deterministic image reconstruction algorithms, where a given set of input CT measurements always maps to the same output image. However, we do not assume that this functional mapping is linear for all cases, only that it is deterministic. Reconstruction algorithms can have different trade-offs between accuracy and precision. Some algorithms, such as ramp-filtered back-projection (FBP) or maximum-likelihood model-based iterative reconstruction (ML-MBIR), produce images with high accuracy but low precision, while others, such as FBP with an apodization filter or penalized-likelihood MBIR (PL-MBIR), reduce variance at the cost of some bias in the form of spatial blur.</p>
+<p>Recent years have seen the introduction of machine learning methods, including deep neural networks (DNNs), for CT image formation such as reconstruction, denoising, and restoration. These methods produce highly favorable images by many quality measures, and the trade-off between variance and bias in output images is modulated by the contents of the training dataset, the choice of loss function, and other network training techniques. Different loss functions can be used for DNN training, such as mean-squared error (MSE) with respect to some supervised training target images. However, MSE does not provide any parametric weighting on different types of errors, so the relative emphasis on reducing variance or bias cannot be controlled by an imaging algorithm developer. Recently, several new deep learning training strategies have been proposed to improve CT image quality beyond MSE, such as by including a mathematical model of perceptual similarity or a discriminator loss term in the training loss function or using two noise realizations during training to reduce bias. We believe that high-quality CT images are those which optimize a trade-off between precision and accuracy according to the clinical requirements.</p>
+</section>
+<section id="methods">
+<h2>METHODS<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<section id="probabilistic-model-of-ct-data-acquisition-and-image-formation">
+<h3>Probabilistic Model of CT Data Acquisition and Image Formation<a class="headerlink" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation" title="Permalink to this heading">#</a></h3>
+<p>Consider a medical imaging scenario where a patient, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, undergoes a CT scan to collect noisy projection-domain measurements, <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>, which are processed to produce a reconstructed image of the patient, <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span>. We define the vector space, <span class="math notranslate nohighlight">\(\boldsymbol{\mathcal{X}} = \Re^{(N_\text{voxel} \times 1)}\)</span>, the domain of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span>, to be a lexicographic column vector representation of a three-dimensional voxelized image volume of linear attenuation coefficients. We define the vector space, <span class="math notranslate nohighlight">\(\boldsymbol{\mathcal{Y}} = \Re^{(N_\text{projection} \times 1)}\)</span>, the domain of <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>, to be a column vector representing projection-domain x-ray photon counts for each detector pixel and each view angle in the CT data acquisition.
+The patient, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, is one sample from a larger patient population consisting of a wide range of shapes, sizes, and anatomical features. Also, the measurements <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are affected by quantum noise and so will not be the same for repeated data acquisitions. For this reason, we model <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> as random vectors. Also, we assume that the reconstructed image, <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span>, is a deterministic function of <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> and is, therefore, a random vector as well. Our probabilistic model of CT image formation is given by the joint probability density function,</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf{x}, \mathbf{y}, \mathbf{\hat{x}}) = p(\mathbf{x})p(\mathbf{y}|\mathbf{x})p(\mathbf{\hat{x}}|\mathbf{y})\]</div>
+<p>Notice that the joint distribution can be broken into three parts. The term <span class="math notranslate nohighlight">\(p(\mathbf{x})\)</span> represents the patient population, <span class="math notranslate nohighlight">\(p(\mathbf{y}|\mathbf{x})\)</span> is the physical model of data acquisition including noise, and <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y})\)</span> represents image reconstruction, which we assume is a deterministic discrete-to-discrete transformation, <span class="math notranslate nohighlight">\(f_\theta: \boldsymbol{\mathcal{Y}} \longrightarrow \boldsymbol{\mathcal{X}}\)</span>. That is, <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y}) = \delta(\mathbf{\hat{x}} - f_{\theta}(\mathbf{y}))\)</span>, where  <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> is a vector of reconstruction hyperparameters (e.g., FBP cutoff frequency or DNN weights). Note that we have also used the property <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y}, \mathbf{x})\)</span> = <span class="math notranslate nohighlight">\(p(\mathbf{\hat{x}}|\mathbf{y})\)</span>. Since the reconstruction is a deterministic function of the measurements, we know that <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span> is conditionally independent of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, if given <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>. We aim to apply this probabilistic model to understand and optimize the quality of images to improve expected health outcomes for patients.</p>
+<p><img alt="Probabilistic graphical model of CT data acquisition and image formation." src="_images/probModel.png" /></p>
+<section id="variance-and-bias-in-reconstructed-images">
+<h4>Variance and Bias in Reconstructed Images<a class="headerlink" href="#variance-and-bias-in-reconstructed-images" title="Permalink to this heading">#</a></h4>
+<p>We are often interested in the joint distribution of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{X}}\)</span> which is given by the marginal distribution,</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf{x}, \mathbf{\hat{x}}) = \int p(\mathbf{x}, \mathbf{y}, \mathbf{\hat{x}}) d\mathbf{y}\]</div>
+<p>The mean of this distribution is given by,</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}[\mathbf{\hat{x}}] = \int \mathbf{\hat{x}} p(\mathbf{x}, \mathbf{\hat{x}}) d\mathbf{x} d\mathbf{\hat{x}}\]</div>
+<p>The variance of this distribution is given by,</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}[\mathbf{\hat{x}}] = \mathbb{E}[\mathbf{\hat{x}}^2] - \mathbb{E}[\mathbf{\hat{x}}]^2 = \int \mathbf{\hat{x}}^2 p(\mathbf{x}, \mathbf{\hat{x}}) d\mathbf{x} d\mathbf{\hat{x}} - \mathbb{E}[\mathbf{\hat{x}}]^2\]</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -422,6 +478,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">ABSTRACT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">INTRODUCTION</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">METHODS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-model-of-ct-data-acquisition-and-image-formation">Probabilistic Model of CT Data Acquisition and Image Formation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-bias-in-reconstructed-images">Variance and Bias in Reconstructed Images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
