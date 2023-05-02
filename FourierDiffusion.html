@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Fourier Diffusion Models &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
+    <title>Introduction &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
   
   
   
@@ -44,7 +44,6 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -61,12 +60,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'FourierDiffusion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Tunable Neural Networks" href="TunableNN.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -155,15 +155,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Instrumentation.html">Spectral CT Instrumentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Algorithms.html">Material Decomposition Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ImageQuality.html">Image Quality in Spectral CT Images</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SSF.html">Spatial Spectral Filters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hybrid.html">Hybrid Spectral CT Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ImmunoContrast.html">Immuno-Contrast CT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TunableNN.html">Tunable Neural Networks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fourier Diffusion Models</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tivnan2019physical.html">INTRODUCTION {#sec:intro}</a></li>
+
+
+
 </ul>
 
     </div>
@@ -334,7 +330,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -345,11 +343,32 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Fourier Diffusion Models</h1>
+    <h1>Introduction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-shift-invariant-systems-with-stationary-gaussian-noise">Linear Shift-Invariant Systems with Stationary Gaussian Noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-stochastic-process-with-mtf-and-nps-control">Discrete-Time Stochastic Process with MTF and NPS Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-time-process-and-stochastic-differential-equations">Continuous-Time Process and Stochastic Differential Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-image-generation-and-supervised-learning">Conditional Image Generation and Supervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#score-matching-loss-function-for-neural-network-training">Score-Matching Loss Function for Neural Network Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-methods-low-dose-ct-image-restoration">Experimental Methods: Low-Dose CT Image Restoration</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-appendix-a-unnumbered">Appendix A {#appendix-a .unnumbered}</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -359,9 +378,896 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fourier-diffusion-models">
-<h1>Fourier Diffusion Models<a class="headerlink" href="#fourier-diffusion-models" title="Permalink to this heading">#</a></h1>
-<p>Content here</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>Denoising diffusion probabilistic models
+[&#64;sohl2015deep; &#64;ho2020denoising] and closely-related score-based
+generative models through stochastic differential equations
+[&#64;song2020score] have recently been demonstrated as powerful machine
+learning based tools for conditional and unconditional image generation.
+These diffusion models are based on a stochastic process in which the
+true images are degraded over time through additive white noise and, in
+some cases, a deterministic scaling down of the signal to zero. Then, a
+neural network can be trained to estimate the time-dependent score
+function which allows one to run the reverse-time stochastic process
+starting with a known prior distribution (pure noise in many cases),
+iteratively running reverse-time update steps, and eventually ending on
+an approximate sample from the same distribution as the training images.
+Compared to another popular method, generative adversarial neural
+networks, diffusion models can achieve higher image quality as measured
+with standard benchmarks while avoiding the difficulties of adversarial
+training [&#64;dhariwal2021diffusion].</p>
+<p>In this article, we present a new method called <em>Fourier Diffusion
+Models,</em> which allow for control of the modulation transfer function
+(MTF) and noise power spectrum (NPS) at each time step of the forward
+and reverse stochastic process. Our approach is to model the forward
+process as a cascade of linear shift-invariant (LSI) systems with
+additive stationary Gaussian noise (ASGN). Then, we train a neural
+network to approximate the time-dependent score function for iterative
+sharpening and denoising of the images to generate high-quality
+posterior samples given measured images with spatial blur and stationary
+correlated noise. One new feature of Fourier diffusion models compared
+to conventional scalar diffusion models is the capability to model
+continuous probability flow from ground truth images to measured images
+with a certain MTF and NPS. The initial results presented in this work
+show that Fourier diffusion models require fewer time steps for
+conditional image generation relative to scalar diffusion models. We
+believe this improvement is due to the fact that the true images are
+more similar to measured images than they are to pure white noise used
+to initialize the reverse process for most scalar diffusion models.</p>
+<p>In the sections to follow, we provide detailed mathematical descriptions
+of Fourier diffusion models including the forward stochastic process,
+the training loss function for score-matching neural networks, and
+instructions on how to sample the reverse process for conditional or
+unconditional image generation. Finally, we present experimental methods
+and results for image restoration of low-radiation-dose CT measurements
+to demonstrate one practical application of the proposed method.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="methods">
+<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h1>
+<section id="linear-shift-invariant-systems-with-stationary-gaussian-noise">
+<h2>Linear Shift-Invariant Systems with Stationary Gaussian Noise<a class="headerlink" href="#linear-shift-invariant-systems-with-stationary-gaussian-noise" title="Permalink to this headline">#</a></h2>
+<p>In this section, we describe the theoretical background for LSI systems
+with ASGN. This is a standard mathematical model used to evaluate the
+spatial resolution and noise covariance of medical imaging systems in
+the spatial frequency domain.</p>
+<p>A two-dimensional LSI system is mathematically defined by convolution
+with the impulse response function, also known as the point spread
+function (PSF), of the system. Fourier convolution theorem states that
+it is equivalent to multiply the two-dimensional Fourier transform of
+the input by the Fourier transform of the PSF, referred to as the
+modulation transfer function (MTF) of the system, followed by the
+inverse Fourier transform to produce the convolved output. For discrete
+systems, the voxelized values of a medical image can be represented as a
+flattened column vector and the convolution operation can be represented
+by a circulant matrix operator,
+<span class="math notranslate nohighlight">\(\mathbf{H} = \mathbf{U}^*_\text{DFT} \boldsymbol{\Lambda}_\text{MTF} \mathbf{U}_\text{DFT}\)</span>,
+where <span class="math notranslate nohighlight">\(\mathbf{U}_\text{DFT}\)</span> is the unitary discrete two-dimensional
+Fourier transform, <span class="math notranslate nohighlight">\(\mathbf{U}^*_\text{DFT}\)</span> is the unitary discrete
+two-dimensional inverse Fourier transform, and
+<span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}_\text{MTF}\)</span> is a diagonal matrix representing
+element-wise multiplication by the MTF in the spatial frequency domain.</p>
+<p>If we assume the noise covariance between two voxels in an image does
+not depend on position, only on relative displacement between two
+positions, then we say the noise is spatially stationary, and the
+covariance can be fully defined by the noise power spectrum (NPS) in the
+spatial frequency domain. For the discrete case, stationary noise can be
+modeled by a circulant covariance matrix,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma} = \mathbf{U}^*_\text{DFT} \boldsymbol{\Lambda}_\text{NPS} \mathbf{U}_\text{DFT}\)</span>,
+where <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}_\text{NPS}\)</span> is a diagonal matrix of
+spatial-frequency-dependent noise power spectral densities. In
+probabilistic terms, the output of an LSI system with ASGN is a
+multivariate Gaussian conditional probability density function
+parameterized by the MTF and NPS as follows:</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf{x}_\text{out}|\mathbf{x}_\text{in}) =  \mathcal{N}(\mathbf{x}_\text{out};  \mathbf{H} \hspace{1mm} \mathbf{x}_\text{in}, \boldsymbol{\Sigma} ).\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}_\text{in}\)</span> is the ground truth image and
+<span class="math notranslate nohighlight">\(\mathbf{x}_\text{out}\)</span> is the degraded image. The notation,
+<span class="math notranslate nohighlight">\(\mathcal{N}(\mathbf{v};\boldsymbol{\mu}_\mathbf{v},\boldsymbol{\Sigma}_\mathbf{v})\)</span>
+represents a multivariate Gaussian probability density function with
+argument, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, parameterized by the mean vector
+<span class="math notranslate nohighlight">\(\boldsymbol{\mu}_\mathbf{v}\)</span> and covariance matrix
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_\mathbf{v}\)</span>.</p>
+</section>
+<section id="discrete-time-stochastic-process-with-mtf-and-nps-control">
+<h2>Discrete-Time Stochastic Process with MTF and NPS Control<a class="headerlink" href="#discrete-time-stochastic-process-with-mtf-and-nps-control" title="Permalink to this headline">#</a></h2>
+<p><img alt="A probabilistic graphical model for the stochastic process, consistingof linear shift invariant systems and additive stationary Gaussiannoise. The measurement-conditioned diffusion model, in light purple, istrained to approximate the reverse process, in darkpurple." src="figures/ddpm_cartoon.png" />{#fig:network_diagram
+width=”\textwidth”}</p>
+<p>Consider a sequence of LSI systems with ASGN resulting in a
+discrete-time forward stochastic process as shown in Figure
+<span class="xref myst">1</span>{reference-type=”ref”
+reference=”fig:network_diagram”}. The update rule for a forward time
+step is defined as</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{[n+1]} = \mathbf{H}_\Delta^{[n]} \mathbf{x}^{[n]} + {\boldsymbol{\Sigma}_\Delta^{[n]}}^{ \hspace{0mm}1/2}\boldsymbol{\eta}^{[n]}  .
+    \label{eq:discrete_forward_update}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{H}_\Delta^{[n]}\)</span> is a circulant matrix representing an
+LSI system, <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_\Delta\)</span> is a circulant matrix
+representing the noise covariance of the ASGN, and
+<span class="math notranslate nohighlight">\(\boldsymbol{\eta}^{[n]}\)</span> is zero-mean identity-covariance Gaussian
+noise. Also, we assume the noise at a given time step is independent of
+the noise at all other time steps; that is,
+<span class="math notranslate nohighlight">\(\boldsymbol{\eta}^{[n]} \perp \!\!\! \perp\boldsymbol{\eta}^{[m]} \hspace{1mm} \forall \hspace{1mm} n \neq m\)</span>.
+Stated differently, the conditional probability density function for a
+forward step is</p>
+<div class="math notranslate nohighlight">
+\[\text{p}(\mathbf{x}^{[n+1]}|\mathbf{x}^{[n]}) = \mathcal{N}(\mathbf{x}^{[n+1]} ; \mathbf{H}_\Delta^{[n]} \hspace{1mm} \mathbf{x}^{[n]},  \boldsymbol{\Sigma}_\Delta) .
+    \label{eq:forward_step}\]</div>
+<p>Figure <span class="xref myst">1</span>{reference-type=”ref”
+reference=”fig:network_diagram”} shows that the full process can be
+represented by a directed acyclic probabilistic graphical model, which
+means the random vector at a given time step, <span class="math notranslate nohighlight">\(\mathbf{x}^{[n]}\)</span>, is
+defined as conditionally independent of random vectors at earlier time
+steps given the previous image, <span class="math notranslate nohighlight">\(\mathbf{x}^{[n-1]}\)</span>. Therefore, the
+joint distribution of the full forward process can be written as</p>
+<div class="math notranslate nohighlight">
+\[\text{p}(\mathbf{x}^{[0]}, \mathbf{x}^{[1]},\mathbf{x}^{[2]},\ldots,\mathbf{x}^{[N]}) = \text{p}(\mathbf{x}^{[0]})\text{p}(\mathbf{x}^{[1]}| \mathbf{x}^{[0]})\text{p}(\mathbf{x}^{[2]}| \mathbf{x}^{[1]})\ldots\text{p}(\mathbf{x}^{[N]}| \mathbf{x}^{[N-1]}) \enspace ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the last time step.</p>
+<p>One example of this stochastic process would be the case where
+<span class="math notranslate nohighlight">\(\mathbf{H}_\Delta^{[n]}\)</span> is convolutional blur and
+<span class="math notranslate nohighlight">\({\boldsymbol{\Sigma}_\Delta^{[n]}}\)</span> is correlated stationary noise. In
+that case, the image will become more blurry and noisy as time passes in
+the forward process. Then, as we will describe in a later section, a
+neural network can be trained to run the reverse-time stochastic
+process, which should result in a series of sharpening and
+noise-reducing steps to restore image quality.</p>
+<p>The cascade of LSI systems with ASGN leading up to a certain time point,
+<span class="math notranslate nohighlight">\(n\)</span>, can be described by an equivalent LSI system,
+<span class="math notranslate nohighlight">\(\mathbf{H}^{[n]} =  \mathbf{U}^*_\text{DFT} \boldsymbol{\Lambda}_{\text{MTF}}^{[n]} \mathbf{U}_\text{DFT}\)</span>,
+and ASGN with covariance,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma^{[n]}}=\mathbf{U}^*_\text{DFT}\boldsymbol{\Lambda}_{\text{NPS}}^{[n]}\mathbf{U}_\text{DFT}\)</span>,
+applied to the original image, <span class="math notranslate nohighlight">\(\mathbf{x^{[0]}}\)</span> as shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{x}^{[n]} = \mathbf{H}^{[n]} \mathbf{x}^{[0]} + {\boldsymbol{\Sigma}^{[n]}}^{ \hspace{0mm} 1/2} \boldsymbol{\epsilon}^{[n]}\\
+    \text{p}(\mathbf{x}^{[n]}|\mathbf{x}^{[0]}) = \mathcal{N}(\mathbf{x}^{[n]} ;   \mathbf{H}^{[n]} \hspace{1mm} \mathbf{x}^{[0]},  \boldsymbol{\Sigma^{[n]}} ) .
+    \label{eq:effective_MTF_NPS}
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}^{[n]}\)</span> is identity-covariance zero-mean
+Gaussian random process defined such that non-overlapping time intervals
+are independent. Our goal is to prescribe the effective MTF and NPS at
+every time step, and then define the forward process parameters
+accordingly. To that end, we can combine
+<span class="xref myst">[eq:forward_step]</span>{reference-type=”eqref”
+reference=”eq:forward_step”} and
+<span class="xref myst">[eq:effective_MTF_NPS]</span>{reference-type=”eqref”
+reference=”eq:effective_MTF_NPS”} to define <span class="math notranslate nohighlight">\(\mathbf{H}_\Delta^{[n]}\)</span> as
+the inverse MTF for the current time step matrix multiplied by the MTF
+for the next time step as follows</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \mathbf{H}_\Delta^{[n]}  = \mathbf{H}^{[n+1]} {\mathbf{H}^{[n]}}^{-1} = \mathbf{U}^*_\text{DFT} \boldsymbol{\Lambda}_{\text{MTF}}^{[n+1]} {\boldsymbol{\Lambda}_{\text{MTF}}^{[n]}}^{\hspace{-3mm}-1} \mathbf{U}_\text{DFT} . \label{eq:LSI_in_terms_of_MTF_}
+\end{gathered}\]</div>
+<p>When this LSI system, <span class="math notranslate nohighlight">\(\mathbf{H}_\Delta^{[n]}\)</span>, is applied to the
+Gaussian random vector at time step <span class="math notranslate nohighlight">\(n\)</span> which has mean vector,
+<span class="math notranslate nohighlight">\(\mathbf{H}^{[n]} \mathbf{x}^{[0]}\)</span>, and covariance matrix,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{[n]}\)</span>, the result is a new Gaussian random vector
+with mean vector <span class="math notranslate nohighlight">\(\mathbf{H}^{[n+1]} \mathbf{x}^{[0]}\)</span> and covariance
+matrix,
+<span class="math notranslate nohighlight">\(\mathbf{H}_\Delta^{[n]} \boldsymbol{\Sigma}^{[n]}  \mathbf{H}_\Delta^{[n]}\)</span>.
+Therefore, we can define the ASGN covariance,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_\Delta^{[n]}\)</span>, as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \boldsymbol{\Sigma}_\Delta^{[n]} = \boldsymbol{\Sigma}^{[n+1]} - \mathbf{H}_\Delta^{[n]} \boldsymbol{\Sigma}^{[n]}  \mathbf{H}_\Delta^{[n]} =  \mathbf{U}^*_\text{DFT}[ \boldsymbol{\Lambda}_{\text{NPS}}^{[n+1]} - \boldsymbol{\Lambda}_{\text{MTF}}^{2 \hspace{0.5mm} [n+1]} \boldsymbol{\Lambda}_{\text{MTF}}^{-2 \hspace{0.5mm} [n]}
+    \boldsymbol{\Lambda}_{\text{NPS}}^{[n]} ] \mathbf{U}_\text{DFT} \label{eq:noise_in_terms_of_NPS}
+\end{gathered}\]</div>
+<p>So the output of the LSI system and zero-mean ASGN applied to the
+Gaussian random vector at time step, <span class="math notranslate nohighlight">\(n\)</span>, is a new Gaussian random
+vector with mean vector, <span class="math notranslate nohighlight">\(\mathbf{H}^{[n+1]} \mathbf{x}^{[0]}\)</span>, and
+covariance matrix, <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{[n+1]}\)</span>. Note, this relies on
+the assumption that all eigenvalues (spatial-frequency-dependent
+variances) of <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{[n+1]}\)</span> are greater than or equal to
+the corresponding eigenvalues of
+<span class="math notranslate nohighlight">\(\mathbf{H}_\Delta^{[n]} \boldsymbol{\Sigma}^{[n]}  \mathbf{H}_\Delta^{[n]}\)</span>.</p>
+<p>We can substitute
+<span class="xref myst">[eq:LSI_in_terms_of_MTF_]</span>{reference-type=”eqref”
+reference=”eq:LSI_in_terms_of_MTF_”} and
+<span class="xref myst">[eq:noise_in_terms_of_NPS]</span>{reference-type=”eqref”
+reference=”eq:noise_in_terms_of_NPS”} into
+<span class="xref myst">[eq:discrete_forward_update]</span>{reference-type=”eqref”
+reference=”eq:discrete_forward_update”} to arrive at the discrete
+forward update rule in terms of the prescribed MTF and NPS:</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \mathbf{x}^{[n + 1]} = \mathbf{H}^{[n + 1]} {\mathbf{H}^{[n]}}^{\hspace{0mm}-1} \mathbf{x}^{[n]} + (\boldsymbol{\Sigma}^{[n+1]} -  {\mathbf{H}^{[n+1]}}^{\hspace{-0mm} 2} {\mathbf{H}^{[n]}}^{\hspace{0mm}-2} \boldsymbol{\Sigma}^{[n]} )^{1/2} \boldsymbol{\eta}^{[n]}
+    \label{eq:discrete_forward_update_MTF_NPS}
+\end{gathered}\]</div>
+</section>
+<section id="continuous-time-process-and-stochastic-differential-equations">
+<h2>Continuous-Time Process and Stochastic Differential Equations<a class="headerlink" href="#continuous-time-process-and-stochastic-differential-equations" title="Permalink to this headline">#</a></h2>
+<p>Consider a continuous-time stochastic process, <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>, given
+by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\mathbf{x}^{(t)} = \mathbf{H}^{(t)} \mathbf{x}^{(0)} + {\boldsymbol{\Sigma}^{(t)}}^{\hspace{0mm}  1/2} \boldsymbol{\epsilon}^{(t)}  
+\label{eq:x_t} \\
+\text{p}(\mathbf{x}^{(t)}|\mathbf{x}^{(0)}) = \mathcal{N}(\mathbf{x}^{(t)}; \mathbf{H}^{(t)} \mathbf{x}^{(0)}, {\boldsymbol{\Sigma}^{(t)}}) \label{eq:x_t_dist}
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}^{(t)}\)</span> is a zero-mean identity-covariance
+Gaussian process where the updates for non-overlapping time intervals
+are independent (i.e., a Lévy process). We define <span class="math notranslate nohighlight">\(\mathbf{H}^{(t)}\)</span> and
+<span class="math notranslate nohighlight">\({\boldsymbol{\Sigma}^{(t)}}\)</span> as continuously differentiable
+time-dependent spatially-circulant matrices, which control the MTF and
+NPS, respectively, over time in the stochastic process.</p>
+<p>An instance of the discrete-time forward stochastic process in
+<span class="xref myst">[eq:effective_MTF_NPS]</span>{reference-type=”eqref”
+reference=”eq:effective_MTF_NPS”} can be defined by sampling the
+continuous-time forward stochastic process in
+<span class="xref myst">[eq:x_t_dist]</span>{reference-type=”eqref”
+reference=”eq:x_t_dist”} with <span class="math notranslate nohighlight">\(N+1\)</span> time points evenly spaced on the
+interval <span class="math notranslate nohighlight">\(t \in (0,T)\)</span> with sample time <span class="math notranslate nohighlight">\(\Delta t = T/N\)</span>. Note the
+discrete-time process, <span class="math notranslate nohighlight">\(\mathbf{x}^{[n]}\)</span>, and the continuous-time
+process, <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> are distinct variables related by this
+sampling procedure shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{x}^{[n]} = \mathbf{H}^{[n]} \mathbf{x}^{[0]} + {\boldsymbol{\Sigma}^{[n]}}^{\hspace{-0mm}  1/2} \boldsymbol{\epsilon}^{[n]} \\
+    = \mathbf{x}^{(n \Delta t)} = \mathbf{H}^{(n \Delta t)} \mathbf{x}^{(0)} + {\boldsymbol{\Sigma}^{(n \Delta t)}}^{\hspace{-0mm}  1/2} \boldsymbol{\epsilon}^{(n \Delta t)} 
+    \label{eq:sample_discrete}
+\end{gathered}\end{split}\]</div>
+<p>In Appendix A, we use the discrete forward update defined in
+<span class="xref myst">[eq:discrete_forward_update_MTF_NPS]</span>{reference-type=”eqref”
+reference=”eq:discrete_forward_update_MTF_NPS”} and take the limit as
+<span class="math notranslate nohighlight">\(\Delta t\)</span> approaches zero to show that the continuous-time process,
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>, can be described by the following stochastic
+differential equation:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{dx} = \mathbf{H^{'}}^{(t)}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \text{dt} + (\boldsymbol{\Sigma^{'}}^{(t)}  -  2 {\mathbf{H^{'}}^{(t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} )^{1/2} \mathbf{dw} \label{eq:SDE}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\mathbf{H^{'}}^{(t)} = \frac{\text{d}}{\text{dt}} \mathbf{H}^{(t)}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma^{'}}^{(t)} = \frac{\text{d}}{\text{dt}} \boldsymbol{\Sigma}^{(t)}\)</span>,
+and <span class="math notranslate nohighlight">\(\mathbf{dw}\)</span> is infinitesimal white Gaussian noise with covariance,
+<span class="math notranslate nohighlight">\(\text{dt} \mathbf{I}\)</span>. The stochastic differential equation in
+<span class="xref myst">[eq:SDE]</span>{reference-type=”eqref” reference=”eq:SDE”} is one
+of the main results of this work. It enables Fourier diffusion models
+with prescriptive control of MTF and NPS as a function of time in the
+forward and reverse stochastic processes.</p>
+<p>If we compare <span class="math notranslate nohighlight">\(\eqref{eq:SDE}\)</span> to the standard form,</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{dx} = \mathbf{f}(\mathbf{x}, t) \text{dt} + \mathbf{G}(t) \mathbf{dw},\]</div>
+<p>then we can identify,</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \mathbf{f}(\mathbf{x}, t) = \mathbf{H^{'}}^{(t)}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \hspace{2mm},\hspace{4mm} 
+    \mathbf{G}(t) = (\boldsymbol{\Sigma^{'}}^{(t)}  -  2 {\mathbf{H^{'}}^{(t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} )^{1/2} .
+    \label{eq:f_g}
+\end{gathered}\]</div>
+<p>It has previously been shown there is an exact solution for the
+time-reversed stochastic differential equation
+[&#64;anderson1982reverse][&#64;song2020score] The formula is shown below:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{dx} = [\mathbf{f}(\mathbf{x}, t) - \mathbf{G}(t) {\mathbf{G}(t)}^T \nabla \log{\text{p} (\mathbf{x}^{(t)})}] \text{dt} + \mathbf{G}(t) \mathbf{dw}.
+    \label{eq:reverse_sde_standard_form}\]</div>
+<p>The inclusion of the score function,
+<span class="math notranslate nohighlight">\(\nabla \log{\text{p} (\mathbf{x}^{(t)})}\)</span>, results in a deterministic
+drift towards higher probability values of <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>.
+Substituting the values in <span class="xref myst">[eq:f_g]</span>{reference-type=”eqref”
+reference=”eq:f_g”} into
+<span class="xref myst">[eq:reverse_sde_standard_form]</span>{reference-type=”eqref”
+reference=”eq:reverse_sde_standard_form”} results in the following
+formula for the reverse stochastic differential equation for Fourier
+diffusion models:</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+     \mathbf{dx} \hspace{-1mm} = \hspace{-1mm} [\mathbf{H^{'}}^{(t)} \hspace{-.5mm} {\mathbf{H}^{(t)}}^{\hspace{-.5mm}-1} \hspace{-2mm}\mathbf{x}^{(t)} \hspace{-1mm} - \hspace{-1mm}(\boldsymbol{\Sigma^{'}}^{(t)}  \hspace{-3mm} -  2 {\mathbf{H^{'}}^{(t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} )  \nabla \log{\text{p} (\mathbf{x}^{(t)})}] \text{dt} + (\boldsymbol{\Sigma^{'}}^{(t)}   \hspace{-3mm} -  2 {\mathbf{H^{'}}^{(t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} )^{1/2} \mathbf{dw} .
+    \label{eq:reverse_SDE_unconditional}
+\end{gathered}\]</div>
+<p>Most existing diffusion models for image generation use a forward
+stochastic process defined by additive white Gaussian noise and if there
+is any deterministic drift, it is almost always by scalar multiplication
+of the image signal, usually causing it to decay towards zero. We refer
+to these as scalar diffusion models, and they are a special case of
+Fourier models, where <span class="math notranslate nohighlight">\(\mathbf{H}^{(t)}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(t)}\)</span>
+are set to scalar matrices (identity times a time-dependent scalar) as
+shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{H}^{(t)} = e^{- \frac{1}{2}\int_0^t \beta(s)\text{ds}}\hspace{1mm} \mathbf{I} \label{eq:scalar_drift}\\
+    \boldsymbol{\Sigma}^{(t)} = \sigma^2(t) \hspace{1mm} \mathbf{I} \label{eq:scalar_drift}
+\end{gathered}\end{split}\]</div>
+<p>which results in the forward stochastic differential equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \mathbf{dx} = -\frac{1}{2} \beta(t) \mathbf{x}^{(t)}\text{dt} + \sqrt{\beta(t)\sigma^2(t) + \frac{\text{d}}{\text{dt}}\sigma^2(t)}\mathbf{dw} ,
+    \label{eq:white_noise}
+\end{gathered}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma^2(t)\)</span> controls the so-called variance-exploding (VE)
+component and <span class="math notranslate nohighlight">\(\beta(t)\)</span> controls the variance-preserving component (VP)
+as defined in [&#64;song2020score]. Note that <span class="math notranslate nohighlight">\(\beta(t)\)</span> is a function of
+time, not necessarily a constant exponential decay, so there is no loss
+of generality and any differentiable magnitude function can be achieved
+with this parameterization. For the special case of the original
+denoising diffusion probabilistic models [&#64;sohl2015deep]
+[&#64;ho2020denoising], there is the additional constraint,
+<span class="math notranslate nohighlight">\(\sigma^2(t) = 1 - e^{-\int_0^{t}\beta(s)\text{ds}}\)</span>, meaning the
+process is fully defined by <span class="math notranslate nohighlight">\(\beta(t)\)</span>.</p>
+<p>One way to interpret Fourier diffusion models is to consider them as
+conventional diffusion models in the spatial frequency domain with
+spatial-frequency-dependent diffusion rates. For example, it would be
+mathematically equivalent to take the two-dimensional Fourier transform
+of the training images, and then train a diagonal diffusion model (using
+diagonal matrices for spatial-frequency dependent diffusion rates) to
+generate new samples of those Fourier coefficients. One practical
+advantage of formulating the process with LSI systems in the image
+domain is that the reverse time steps may be more suitable for
+approximation with convolutional neural networks, which are also
+composed of shift-invariant operations.</p>
+</section>
+<section id="conditional-image-generation-and-supervised-learning">
+<h2>Conditional Image Generation and Supervised Learning<a class="headerlink" href="#conditional-image-generation-and-supervised-learning" title="Permalink to this headline">#</a></h2>
+<p>The reverse-time stochastic differential equation in
+<span class="xref myst">[eq:reverse_SDE_unconditional]</span>{reference-type=”eqref”
+reference=”eq:reverse_SDE_unconditional”} applies to unconditional image
+generation with Fourier diffusion models. Assuming we have access to the
+score function, <span class="math notranslate nohighlight">\(\nabla \log{\text{p} (\mathbf{x}^{(t)})}\)</span> or an
+approximation thereof, and assuming the distribution of the endpoint,
+<span class="math notranslate nohighlight">\(\text{p}(\mathbf{x}^{(T)})\)</span>, is a known prior, we can use
+<span class="xref myst">[eq:reverse_SDE_unconditional]</span>{reference-type=”eqref”
+reference=”eq:reverse_SDE_unconditional”} to run the reverse-time
+process and generate new samples from <span class="math notranslate nohighlight">\(\text{p}(\mathbf{x}^{(0)})\)</span> which
+typically represents the training data distribution.</p>
+<p>In this work, we consider the case where samples of both the target
+images, <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>, and some corresponding measurements,
+<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, are available at training time. Our goal is to train a
+deep learning model to sample from the posterior distribution
+<span class="math notranslate nohighlight">\(\text{p}(\mathbf{x}^{(0)}|\mathbf{y})\)</span>. For this work, we will consider
+the following forward model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{y} = \mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}} \mathbf{x}^{(0)} + \boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}}^{1/2} \boldsymbol{\varepsilon} \\
+    \text{p}(\mathbf{y}|\mathbf{x}^{(0)}) = \mathcal{N}(\mathbf{y}; \mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}} \hspace{0.5mm} \mathbf{x}^{(0)}, \boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}})
+    \label{eq:forward_model}
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon}\)</span> is a zero-mean identity-covariance
+Gaussian random vector, <span class="math notranslate nohighlight">\(\mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}}\)</span> is
+circulant matrix representing the MTF of the measurements, and
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}}\)</span> is a circulant
+matrix representing the NPS of the measurements.</p>
+<p>As shown in Figure <span class="xref myst">2</span>{reference-type=”ref”
+reference=”fig:conditional_options”}, there are at least two possible
+causal relationships between the stochastic process, <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>,
+and the measurements, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. The first option shows measurements
+as outside information, where <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is a stochastic function of
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>, but separate from the forward process. In that case,
+we assume that <span class="math notranslate nohighlight">\(\text{p}(\mathbf{x}^{(T)}|\mathbf{y})\)</span> is a known prior,
+which we can use to initialize the reverse process, and we replace the
+unconditional score function in
+<span class="xref myst">[eq:reverse_SDE_unconditional]</span>{reference-type=”eqref”
+reference=”eq:reverse_SDE_unconditional”} with the posterior score
+function, <span class="math notranslate nohighlight">\(\nabla\log\text{p}(\mathbf{x}^{(t)}|\mathbf{y})\)</span>. The second
+option in Figure <span class="xref myst">2</span>{reference-type=”ref”
+reference=”fig:conditional_options”} shows measurements as the final
+time step. In that case, we can use the reverse process defined in
+<span class="xref myst">[eq:reverse_SDE_unconditional]</span>{reference-type=”eqref”
+reference=”eq:reverse_SDE_unconditional”} without modification. By
+initializing with the measurements, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the final step of the
+reverse process at <span class="math notranslate nohighlight">\(t=0\)</span> will be a sample from
+<span class="math notranslate nohighlight">\(\text{p}(\mathbf{x}^{(0)}|\mathbf{y})\)</span>.</p>
+<p>In this work, we evaluate and compare scalar diffusion models with
+Fourier diffusion models for conditional image generation. For the
+forward model defined in
+<span class="xref myst">[eq:forward_model]</span>{reference-type=”eqref”
+reference=”eq:forward_model”}, scalar diffusion models cannot generally
+be used for the second option, with measurements as the last time step.
+This is one of the most important new capabilities of Fourier diffusion
+models; the forward process can be crafted such that the MTF and NPS at
+the final time step of the forward process are exactly equal to the
+measurement MTF and NPS. That is,
+<span class="math notranslate nohighlight">\(\mathbf{H}^{(T)} = \mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}}\)</span>, and,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(T)}=\boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}}\)</span>.
+In this way, Fourier diffusion models can describe continuous
+probability flow from the ground truth images to measured images with
+shift-invariant blur and stationary correlated noise.</p>
+<p><img alt="Two options for causal relationships between stochastic process andmeasurements. The second option is only possible with Fourier diffusionmodels. In this work, we evaluate and compare scalar diffusion modelsusing the first option and Fourier diffusion models using the secondoption. " src="figures/conditional_options.png" />{#fig:conditional_options
+width=”95%”}</p>
+</section>
+<section id="score-matching-loss-function-for-neural-network-training">
+<h2>Score-Matching Loss Function for Neural Network Training<a class="headerlink" href="#score-matching-loss-function-for-neural-network-training" title="Permalink to this headline">#</a></h2>
+<p>It is possible to train a neural network to estimate the score function
+in order to run an approximation of the reverse process, allowing for
+conditional or unconditional generative modeling. We assume the inputs
+of the neural network are the image at a certain time step,
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>, the measurements, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, and the time, <span class="math notranslate nohighlight">\(t\)</span>,
+so we define the neural network by the function,
+<span class="math notranslate nohighlight">\(\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}^{(t)}, \mathbf{y}, t)\)</span>,
+parameterized by the network weights <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. During
+training, we start with a sample from <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>. Next, we
+uniformly sample the time, <span class="math notranslate nohighlight">\(t\in (0,T)\)</span>, and we generate a corresponding
+sample from <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> given <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span> using
+<span class="xref myst">[eq:x_t]</span>{reference-type=”eqref” reference=”eq:x_t”} and the
+pre-defined time-dependent matrices, <span class="math notranslate nohighlight">\(\mathbf{H}^{(t)}\)</span> and
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(t)}\)</span>, which describe the effective MTF and NPS.
+Finally, we generate a sample from <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> given <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>
+and <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>. If using the first option, in Figure
+<span class="xref myst">2</span>{reference-type=”ref”
+reference=”fig:conditional_options”}, where measurements are treated as
+outside information, then <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is conditionally independent of
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> given <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>, so we can generate
+<span class="math notranslate nohighlight">\(\mathbf{y}\)</span> as a stochastic function of <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span> using
+<span class="xref myst">[eq:forward_model]</span>{reference-type=”eqref”
+reference=”eq:forward_model”}. If using the second option in Figure
+<span class="xref myst">2</span>{reference-type=”ref”
+reference=”fig:conditional_options”}, where the measurements are the
+last time step, we can view <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> as a stochastic function of
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> and sample it using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{y} = \mathbf{H}^{(T)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} + (\boldsymbol{\Sigma}^{(T)} -  {\mathbf{H}^{(T)}}^{\hspace{-0mm} 2} {\mathbf{H}^{(t)}}^{\hspace{0mm}-2} \boldsymbol{\Sigma}^{[n]} )^{1/2} \boldsymbol{\zeta} \\
+    \text{p}(\mathbf{y}|\mathbf{x}^{(t)})  = \mathcal{N}(\mathbf{y}; \mathbf{H}^{(T)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)}, \boldsymbol{\Sigma}^{(T)} -  {\mathbf{H}^{(T)}}^{\hspace{-0mm} 2} {\mathbf{H}^{(t)}}^{\hspace{0mm}-2} \boldsymbol{\Sigma}^{(t)})
+    \label{eq:option_2_sample_y}
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\zeta}\)</span> is a zero-mean identity-covariance Gaussian
+random vector. The logic for this formula is very similar to the logic
+in the derivation of
+<span class="xref myst">[eq:discrete_forward_update_MTF_NPS]</span>{reference-type=”eqref”
+reference=”eq:discrete_forward_update_MTF_NPS”}. Applying
+<span class="math notranslate nohighlight">\(\mathbf{H}^{(T)}{\mathbf{H}^{(t)}}^{-1}\)</span> to <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> and
+adding
+<span class="math notranslate nohighlight">\((\boldsymbol{\Sigma}^{(T)} -  {\mathbf{H}^{(T)}}^{\hspace{-0mm} 2} {\mathbf{H}^{(t)}}^{\hspace{0mm}-2} \boldsymbol{\Sigma}^{(t)})\)</span>
+will result in a new Gaussian random variable
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(T)}=\mathbf{y}\)</span> with mean vector
+<span class="math notranslate nohighlight">\(\mathbf{H}^{(T)} \mathbf{x}^{(0)} = \mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}} \mathbf{x}^{(0)}\)</span>
+and covariance,
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(T)} = \boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}}\)</span></p>
+<p>We train the network with samples from the supervised training data,
+<span class="math notranslate nohighlight">\((\mathbf{x}^{(0)}, \mathbf{x}^{(t)}, \mathbf{y}, t)\)</span>, and minimize the
+mean squared error between the predicted score,
+<span class="math notranslate nohighlight">\(\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}^{(t)}, \mathbf{y}, t)\)</span>, and
+the target score,
+<span class="math notranslate nohighlight">\(\nabla \log{\text{p} (\mathbf{x}^{(t)}|\mathbf{x}^{(0)})}\)</span>, (known as
+the Jensen-Fisher divergence [&#64;sanchez2012jensen]) as shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \underset{\mathbf{x}^{(0)}, t}{\mathbb{E}}[||\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}^{(t)}, \mathbf{y}, t) - \nabla \log{\text{p} (\mathbf{x}^{(t)}|\mathbf{x}^{(0)})}||^2] .
+    \nonumber \\
+    =\underset{\mathbf{x}^{(0)}, t}{\mathbb{E}}[||\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}^{(t)}, \mathbf{y}, t) - {\boldsymbol{\Sigma}^{(t)}}^{\hspace{0mm}-1} (\mathbf{x}^{(t)} - \mathbf{H}^{(t)} \mathbf{x}^{(0)})   ||^2].
+    \label{eq:score_matching_loss}
+\end{gathered}\end{split}\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span> is available at training time to evaluate
+the score function,
+<span class="math notranslate nohighlight">\(\nabla \log{\text{p} (\mathbf{x}^{(t)}|\mathbf{x}^{(0)})}\)</span>, but not at
+test time. In this supervised learning approach, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is
+available at both training and testing time, so it is used as a network
+input. Since <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is a stochastic function of
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>, it may contain information about the target image
+that is useful for improving score prediction.</p>
+<p>The training loss function in
+<span class="xref myst">[eq:score_matching_loss]</span>{reference-type=”eqref”
+reference=”eq:score_matching_loss”} is valid for both options in Figure
+<span class="xref myst">2</span>{reference-type=”ref”
+reference=”fig:conditional_options”}. For the first option, with
+measurements as outside information, we can use the property that
+<span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is conditionally independent of <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> given
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span>. Since <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span> is given at training time,
+we can make the substitution:
+<span class="math notranslate nohighlight">\(\nabla \log{\text{p} (\mathbf{x}^{(t)}|\mathbf{x}^{(0)}, \mathbf{y} )}\)</span>
+= <span class="math notranslate nohighlight">\(\nabla \log{\text{p} (\mathbf{x}^{(t)}|\mathbf{x}^{(0)})}\)</span>.
+Therefore,
+<span class="xref myst">[eq:score_matching_loss]</span>{reference-type=”eqref”
+reference=”eq:score_matching_loss”} is valid to approximate
+<span class="math notranslate nohighlight">\(\nabla \log \text{p}(\mathbf{x}^{(t)}| \mathbf{y})\)</span> in the case where
+measurements are considered to be outside information. For the second
+option, with measurements as the final time step, we seek to approximate
+<span class="math notranslate nohighlight">\(\nabla \log \text{p}(\mathbf{x}^{(t)})\)</span>; so,
+<span class="xref myst">[eq:score_matching_loss]</span>{reference-type=”eqref”
+reference=”eq:score_matching_loss”} is also valid for that case.</p>
+<p>After the score-matching neural network is trained, one can run a
+discrete-time approximation of the reverse process using the
+Euler-Maryuama method, as shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+     \mathbf{x}^{[n-1]} = \mathbf{x}^{[n]} - [\mathbf{H^{'}}^{(n\Delta t)}{\mathbf{H}^{(n \Delta t)}}^{\hspace{0mm}-1} \mathbf{x}^{[n]} - (-  2 {\mathbf{H^{'}}^{(n \Delta t)}} {\mathbf{H}^{(n \Delta t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(n \Delta t)} + \boldsymbol{\Sigma^{'}}^{(n \Delta t)} )  \mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}^{[n]}, \mathbf{y}, n\Delta t)] \Delta t \nonumber \\
+    \hspace{70mm} + (-  2 {\mathbf{H^{'}}^{(n \Delta t)}} {\mathbf{H}^{(n\Delta t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(n \Delta t)} + \boldsymbol{\Sigma^{'}}^{(n\Delta t)}  )^{1/2} \sqrt{\Delta t} \boldsymbol{\zeta}^{[n]} \label{eq:euler-maryuama}
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\zeta}^{[n]}\)</span> is zero-mean identity-covariance
+Gaussian noise with independent time steps.</p>
+</section>
+<section id="experimental-methods-low-dose-ct-image-restoration">
+<h2>Experimental Methods: Low-Dose CT Image Restoration<a class="headerlink" href="#experimental-methods-low-dose-ct-image-restoration" title="Permalink to this headline">#</a></h2>
+<p>In this section, we describe an implementation of our proposed method
+for low-dose CT image restoration. We used the publicly available Lung
+Image Database Consortium (LIDC) dataset, which consists of
+three-dimensional image volumes reconstructed from thoracic CT scans for
+lung imaging. The first 80% of image volumes were used for training data
+and the last 20% were reserved for validation data. We randomly
+extracted 8000 two-dimensional axial slices from the training volumes
+and 2000 axial slices from the validation volumes. The slices were
+registered to a common coordinate system using bilinear interpolation so
+that all images are <span class="math notranslate nohighlight">\(512\times512\)</span> with <span class="math notranslate nohighlight">\(1.0\)</span> mm voxel spacing. The
+image values were shifted and scaled such that 0.0 represents -1000 HU
+and 10.0 represents 1000 HU. The reason we chose this scale was so that
+we can use zero-mean identity-covariance Gaussian noise as the final
+time step of scalar diffusion models and the noise standard deviation
+will be comparable to the measurements as shown in Figure
+<span class="xref myst">4</span>{reference-type=”ref”
+reference=”fig:MTF_NPS_vs_time_scalar”}. These images were used as the
+ground-truth for training and validation; however, it is important to
+note that these images still contain errors such as noise, blur, and
+artifacts. These errors are part of the target training distribution, so
+they may impact the results for the trained diffusion models. Our
+approach is to simulate lower-quality images that one may measure with a
+low-radiation-dose CT scan by applying convolutional blur and adding
+stationary noise. These low-quality CT images represent the output of a
+low-dose CT scan, so they are treated as the measurements for the
+purposes of this study. Our goal is to train conditional score-based
+diffusion models to sample posterior estimate images given low-dose CT
+measurements. If successful, the posterior estimate images sampled by
+the trained model should have similar image quality to the normal-dose
+training images in the LIDC dataset.</p>
+<p>For this implementation, we chose to parameterize both MTF and NPS using
+a set of band-pass filters. Let the matrix
+<span class="math notranslate nohighlight">\(\boldsymbol{\mathcal{G}}(h) =  \mathbf{U}^*_\text{DFT} \boldsymbol{\Lambda}_{\boldsymbol{\mathcal{G}}}(h) \mathbf{U}_\text{DFT}\)</span>
+represent an isotropic Gaussian low-pass filter in the two-dimensional
+spatial frequency domain, where <span class="math notranslate nohighlight">\(h\)</span> describes the PSF full width at half
+maximum in units of <span class="math notranslate nohighlight">\(\text{mm}\)</span>. That is, the diagonal of
+<span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}_{\boldsymbol{\mathcal{G}}}(h)\)</span> is the Fourier
+transform of a convolutional Gaussian blur kernel proportional to
+<span class="math notranslate nohighlight">\(\exp{(-\frac{1}{2} (\sqrt{x^2 + y^2})^2 / \sigma^2(h))}\)</span> where
+<span class="math notranslate nohighlight">\(\sigma(h)=(2\sqrt{2\log{2}})^{-1}h \approx (0.425) h\)</span>. We used the
+following parameterization of low-pass, band-pass, and high-pass
+filters:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{H}_\text{LPF} = \boldsymbol{\mathcal{G}}(3.0~\text{mm}) \\
+    \mathbf{H}_\text{BPF} = \boldsymbol{\mathcal{G}}(1.0~\text{mm}) - \boldsymbol{\mathcal{G}}(3.0~\text{mm}) \\
+    \mathbf{H}_\text{HPF} = \mathbf{I} - \boldsymbol{\mathcal{G}}(1.0~\text{mm}) 
+\end{gathered}\end{split}\]</div>
+<p>Our model of low-dose CT measurements, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, given the ground
+truth image, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \text{p}(\mathbf{y}|\mathbf{x}^{(0)}) = \mathcal{N}(\mathbf{y}; \mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}} \hspace{0.5mm} \mathbf{x}^{(0)}, \boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}})\\
+    \mathbf{H}_{\mathbf{y}|\mathbf{x}^{(0)}} = (1.0) \enspace \mathbf{H}_\text{LPF}  + (0.5) \enspace \mathbf{H}_\text{BPF}  + (0.1) \enspace \mathbf{H}_\text{HPF} \\ 
+    \boldsymbol{\Sigma}_{\mathbf{y}|\mathbf{x}^{(0)}} = (0.1) \enspace \mathbf{H}_\text{LPF}  + (1.0) \enspace \mathbf{H}_\text{BPF}  + (0.5) \enspace \mathbf{H}_\text{HPF}  
+\end{gathered}\end{split}\]</div>
+<p>This particular choice of measured MTF and NPS is arbitrary but intended
+to roughly match the typical patterns observed in low-dose CT images. In
+general, one can substitute the MTF and NPS to match the calibrated
+values for a medical imaging system.</p>
+<p>In this experiment, we compare two cases: 1) scalar diffusion models
+using multiplicative drift and additive white Gaussian noise and 2)
+Fourier diffusion models using linear shift invariant systems and
+additive stationary Gaussian noise. As shown in
+<span class="xref myst">[eq:scalar_drift]</span>{reference-type=”eqref”
+reference=”eq:scalar_drift”} and
+<span class="xref myst">[eq:white_noise]</span>{reference-type=”eqref”
+reference=”eq:white_noise”}, scalar diffusion models are a special case
+of Fourier diffusion models that can be written using time-dependent
+scalar matrices. We define the scalar diffusion model using the
+following parameters:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{H}^{(t)} = (e^{-  
+ 5t^2})\hspace{1mm} \mathbf{I} \label{eq:scalar_diffusion_model_drift}\\
+    \boldsymbol{\Sigma}^{(t)} = (1 - e^{- 10 t^2}) \hspace{1mm} \mathbf{I} \label{eq:scalar_diffusion_model_noise}
+\end{gathered}\end{split}\]</div>
+<p>This forward stochastic process begins with <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span> having
+the same distribution as the true images and converges to approximately
+zero-mean identify-covariance Gaussian noise at the final time step,
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(T)}\)</span>. For the Fourier diffusion model case, we design the
+forward stochastic process so that the final time step has the same
+distribution as the low-dose CT measurements. This capability to model
+continuous probability flow from true images to measured images is one
+of the key benefits of Fourier diffusion models. For this case, we use
+the formulae shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \mathbf{H}^{(t)} = (1.0) \enspace \mathbf{H}_\text{LPF}  + (0.5 + 0.5e^{-5t^2}) \enspace \mathbf{H}_\text{BPF}  + (0.1 + 0.9e^{-5t^2}) \enspace \mathbf{H}_\text{HPF} \\ 
+    \boldsymbol{\Sigma}^{(t)} = (0.1 - 0.1 e^{- 10 t^2}) \enspace \mathbf{H}_\text{LPF}  + (1.0 - 1.0 e^{- 10 t^2}) \enspace \mathbf{H}_\text{BPF}  + (0.5 - 0.5 e^{- 10 t^2}) \enspace \mathbf{H}_\text{HPF}  
+\end{gathered}\end{split}\]</div>
+<p><img alt="Diagram of the score-matching neural network. The inputs are theforward process sample, low-dose CT measured image, and sample time. Theoutput is the predicted score." src="figures/score_matching_nn_diagram.png" />{#fig:unet_diagram width=”82%”}</p>
+<figure id="fig:MTF_NPS_vs_time_scalar">
+<p><img src="figures/MTF_vs_time_scalar.png" style="width:43.0%"
+alt="image" /> <img src="figures/NPS_vs_time_scalar.png"
+style="width:43.0%" alt="image" /></p>
+<figcaption>MTF and NPS vs time for the scalar diffusion model.
+</figcaption>
+</figure>
+<figure id="fig:MTF_NPS_vs_time_fourier">
+<p><img src="figures/MTF_vs_time_fourier.png" style="width:43.0%"
+alt="image" /> <img src="figures/NPS_vs_time_fourier.png"
+style="width:43.0%" alt="image" /></p>
+<figcaption>MTF and NPS vs time for the Fourier diffusion model.
+</figcaption>
+</figure>
+<p>For the score-matching neural network, we used the u-net architecture
+shown in Figure <span class="xref myst">3</span>{reference-type=”ref”
+reference=”fig:unet_diagram”}. The model inputs are the forward process
+sample, the low-dose CT measurements, and the sample time. The model
+output is an estimation of the score function. For time encoding, we
+applied a multi-layer perceptron to the sample time and converted the
+output to constant-valued images. The forward process sample image, the
+low-dose CT measured image, and the time encoding images are
+concatenated and passed to the score-matching u-net. Each convolutional
+block consists of a convolutional layer, rectified linear units
+activation, and batch normalization. The final output layer has no
+activation function (linear) or batch normalization. Dropout layers were
+also applied to each convolutional block with a drop out rate of 20%. We
+used the Adam optimizer with a learning rate of <span class="math notranslate nohighlight">\(10^{-3}\)</span>
+[&#64;kingma2014adam]. All machine learning modules were implemented with in
+Pytorch [&#64;NEURIPS2019_9015]. We ran 10,000 training epochs, 32 images
+per batch, and the training loss function in
+<span class="xref myst">[eq:score_matching_loss]</span>{reference-type=”eqref”
+reference=”eq:score_matching_loss”}, where the expectation over
+<span class="math notranslate nohighlight">\(\mathbf{x}^{(0)}\)</span> is implemented via the sample mean over multiple
+training images per batch and the expectation over time, <span class="math notranslate nohighlight">\(t\)</span>, is
+implemented by sampling a different time step independently for each
+image so that there are also 32 time samples per batch.</p>
+<p>After training, we run the reverse process using
+<span class="xref myst">[eq:euler-maryuama]</span>{reference-type=”eqref”
+reference=”eq:euler-maryuama”} for both diffusion models. We discretize
+the reverse process with 1024, 512, 256, 128, 64, 32, 16, 8 and 4 time
+steps uniformly spaced between <span class="math notranslate nohighlight">\(t=0\)</span> and <span class="math notranslate nohighlight">\(T\)</span>, inclusively. That way, we
+can analyze the error due to time discretization for scalar and Fourier
+diffusion models. We ran the reverse process 32 times using the same
+measurements. For the posterior estimates at <span class="math notranslate nohighlight">\(t=0\)</span> of the reverse
+process, we compute the mean squared error, mean squared bias, and mean
+variance where the mean refers to a spatial average over the image,
+error/bias are with respect to the ground truth and the variance refers
+to the ensemble of samples from the reverse process.</p>
+<p><img alt="Forward and reverse stochastic process for the scalar diffusion modelwith 1024 time steps applied to a full CT image." src="figures/process_scalar_1024.png" />{#fig:process_scalar_1024 width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the Fourier diffusion modelwith 1024 time steps applied to a full CT image." src="figures/process_fourier_1024.png" />{#fig:process_fourier_1024
+width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the scalar diffusion modelwith 16 time steps applied to a full CT image." src="figures/process_scalar_16.png" />{#fig:process_scalar_16 width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the Fourier diffusion modelwith 16 time steps applied to a full CT image." src="figures/process_fourier_16.png" />{#fig:process_fourier_16 width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the scalar diffusion modelwith 1024 time steps applied to an image patch showing a lung nodule." src="figures/process_patch_scalar_1024.png" />{#fig:process_patch_scalar_1024
+width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the Fourier diffusion modelwith 1024 time steps applied to an image patch showing a lung nodule." src="figures/process_patch_fourier_1024.png" />{#fig:process_patch_fourier_1024
+width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the scalar diffusion modelwith 16 time steps applied to an image patch showing a lung nodule." src="figures/process_patch_scalar_16.png" />{#fig:process_patch_scalar_16
+width=”99%”}</p>
+<p><img alt="Forward and reverse stochastic process for the Fourier diffusion modelwith 16 time steps applied to an image patch showing a lung nodule." src="figures/process_patch_fourier_16.png" />{#fig:process_patch_fourier_16
+width=”99%”}</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="results">
+<h1>Results<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h1>
+<p>An example of the forward and reverse process for scalar diffusion
+models is displayed in Figure
+<span class="xref myst">6</span>{reference-type=”ref”
+reference=”fig:process_scalar_1024”} for a full CT image and Figure
+<span class="xref myst">10</span>{reference-type=”ref”
+reference=”fig:process_patch_scalar_1024”} for a zoomed patch showing a
+lung nodule. This shows the existing method for diffusion models, which
+will be our reference to evaluate our new proposed method. The forward
+process is initialized, at <span class="math notranslate nohighlight">\(t=0\)</span>, with the ground truth images. The
+signal fades to zero over time in the forward process, and Gaussian
+white noise is added at each time step. The final result is
+approximately zero-mean identity-covariance Gaussian noise. The score
+matching neural network is trained to run the reverse process, sampling
+high quality images given low-radiation-dose CT measurements. For the
+processes shown in Figure
+<span class="xref myst">6</span>{reference-type=”ref”
+reference=”fig:process_scalar_1024”} and Figure
+<span class="xref myst">10</span>{reference-type=”ref”
+reference=”fig:process_patch_scalar_1024”}, we used 1024 time steps to
+run the reverse process. Comparing the top row and the bottom row, the
+samples from the reverse process appear to have similar image quality to
+the forward process. The final result of the reverse process at <span class="math notranslate nohighlight">\(t=0\)</span> is
+a posterior estimate, or an approximation of the ground truth, given the
+low-radiation-dose CT measurements. Examples of the Fourier diffusion
+model with 1024 time steps are shown in Figure
+<span class="xref myst">7</span>{reference-type=”ref”
+reference=”fig:process_fourier_1024”} and
+<span class="xref myst">9</span>{reference-type=”ref”
+reference=”fig:process_fourier_16”}. The forward process for this case
+begins with the true images at <span class="math notranslate nohighlight">\(t=0\)</span> and converges to the same
+distribution as the measured images at <span class="math notranslate nohighlight">\(T\)</span>. Note the final column of the
+Fourier diffusion model shows an example from the same distribution as
+the measured images. All the reverse processes in these Figures are for
+conditional image generation; so both the scalar and Fourier diffusion
+models are guided by measurements with the same image quality shown at
+<span class="math notranslate nohighlight">\(T\)</span> in the Fourier diffusion models.</p>
+<p>Figures <span class="xref myst">6</span>{reference-type=”ref”
+reference=”fig:process_scalar_1024”},
+<span class="xref myst">7</span>{reference-type=”ref”
+reference=”fig:process_fourier_1024”},
+<span class="xref myst">10</span>{reference-type=”ref”
+reference=”fig:process_patch_scalar_1024”}, and
+<span class="xref myst">11</span>{reference-type=”ref”
+reference=”fig:process_patch_fourier_1024”} use 1024 time steps, which
+means one reverse process sample requires 1024 passes of the
+score-matching neural network. Corresponding examples using only 16 time
+steps are shown in Figures
+<span class="xref myst">8</span>{reference-type=”ref”
+reference=”fig:process_scalar_16”},
+<span class="xref myst">9</span>{reference-type=”ref”
+reference=”fig:process_fourier_16”},
+<span class="xref myst">12</span>{reference-type=”ref”
+reference=”fig:process_patch_scalar_16”}, and
+<span class="xref myst">13</span>{reference-type=”ref”
+reference=”fig:process_patch_fourier_16”}, respectively. For the case of
+the scalar diffusion model with fewer time steps shown in Figure
+<span class="xref myst">8</span>{reference-type=”ref”
+reference=”fig:process_scalar_16”} and Figure
+<span class="xref myst">12</span>{reference-type=”ref”
+reference=”fig:process_patch_scalar_16”}, the image quality in the
+reverse process is much worse than the forward process. Comparing the
+1024 time step reverse process, shown in Figure
+<span class="xref myst">6</span>{reference-type=”ref”
+reference=”fig:process_scalar_1024”}, with the 16 time step reverse
+process, shown in Figure
+<span class="xref myst">9</span>{reference-type=”ref”
+reference=”fig:process_fourier_16”}, the increased error is most likely
+due to time discretization. Figure
+<span class="xref myst">13</span>{reference-type=”ref”
+reference=”fig:process_patch_fourier_16”} shows an example of the
+Fourier diffusion model using only 16 time steps for the reverse
+process. Notice the improvement in image quality for the Fourier
+diffusion model reverse process at <span class="math notranslate nohighlight">\(t=0\)</span> in Figure
+<span class="xref myst">9</span>{reference-type=”ref”
+reference=”fig:process_fourier_16”} relative to the Fourier diffusion
+model reverse process at <span class="math notranslate nohighlight">\(t=0\)</span> in Figure
+<span class="xref myst">8</span>{reference-type=”ref”
+reference=”fig:process_scalar_16”}. The qualitative improvement in image
+quality for these two cases shows a convincing visual example of
+improved image quality for Fourier diffusion models when using a lower
+number of time steps and merits further quantitative image quality
+analysis.</p>
+<p>Figure <span class="xref myst">14</span>{reference-type=”ref”
+reference=”fig:image_quality_metrics”} shows the mean squared error,
+mean squared bias, and mean variance for scalar diffusion models and
+Fourier diffusion models. Here, the mean refers to spatial average over
+the images. The line plot represents the sample mean for the population
+of validation images and the shaded region represents one standard
+deviation over the population. From these plots, we conclude that
+Fourier diffusion models out-perform scalar diffusion models overall.
+All three metrics show improved performance for the Fourier diffusion
+models. In particular, we note the improved performance at a low number
+of time steps. Fourier diffusion models with only 8 time steps achieve
+similar mean squared error to scalar diffusion models using 128 or even
+1024 time steps. The next section provides explanations and conclusions
+for these results.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<p>The results of the experiments in the previous section show that Fourier
+diffusion models achieve higher performance than scalar diffusion models
+across multiple image quality metrics and number of time steps. The
+improved performance may be related to the greater apparent similarity
+between the initial images at <span class="math notranslate nohighlight">\(t=0\)</span> and final images at <span class="math notranslate nohighlight">\(T\)</span> for Fourier
+diffusion models relative to scalar diffusion models. It follows that
+the reverse process updates for the Fourier diffusion model are smaller
+than those of the scalar diffusion model, which may result in improved
+performance for a neural network with a fixed number of parameters.
+Intuitively, some denoising problems are harder than others and harder
+denoising problems require more computational power. The neural network
+used for the scalar diffusion model reverse updates must dedicate some
+of its computational power to inverting the imagined artificial process
+of the image signal fading to zero; whereas the Fourier diffusion model
+reverse updates are completely dedicated to moving the measured image
+distribution towards the true image distribution. Another possible
+explanation is the similarity between the LSI systems of the Fourier
+diffusion model and the convolutional layers of the neural network. It
+is possible that convolutional neural networks are better suited to
+model local sharpening and denoising operations of the Fourier diffusion
+model reverse updates, as opposed to the image-wide effects in the
+scalar diffusion models.</p>
+<p>While this work was originally motivated by the goal of controlling MTF
+and NPS in the forward process, we note that the derivations have not
+relied on any special properties of circulant matrices. Therefore, we
+believe it should be possible to train score-based generative machine
+learning models defined by any Gaussian stochastic process composed of
+linear systems and additive Gaussian noise without specifying shift
+invariant systems or stationary noise. So far, we have only tested the
+machine learning implementation with Fourier diffusion models. In future
+work, we hope to explore new applications of the more general model.</p>
+<p>Our final conclusion is that Fourier diffusion models have the potential
+to improve performance for conditional image generation relative to
+conventional scalar diffusion models. Fourier diffusion models can apply
+to medical imaging systems that are approximately shift invariant with
+stationary Gaussian noise. For the low-radiation-dose CT image
+restoration example, these improvements have the potential to improve
+image quality, diagnostic accuracy and precision, and patient health
+outcomes while keeping radiation dose at a suitable level for patient
+screening applications. We look forward to exploring new medical imaging
+applications of Fourier diffusion models in the future.</p>
+<figure id="fig:image_quality_metrics">
+<p><img src="figures/discrete_time_root_mean_squared_error.png"
+style="width:32.0%" alt="image" /> <img
+src="figures/discrete_time_root_mean_squared_bias.png"
+style="width:32.0%" alt="image" /> <img
+src="figures/discrete_time_root_mean_variance.png" style="width:32.0%"
+alt="image" /></p>
+<figcaption>Mean squared bias vs number of time steps for the Fourier
+diffusion model and the scalar diffusion model. The shaded region shows
+one standard deviation of the metric over the population of validation
+images. </figcaption>
+</figure>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix-a-appendix-a-unnumbered">
+<h1>Appendix A {#appendix-a .unnumbered}<a class="headerlink" href="#appendix-a-appendix-a-unnumbered" title="Permalink to this headline">#</a></h1>
+<p>Consider a stochastic process defined by the following</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{(t)} = \mathbf{H}^{(t)} \mathbf{x}^{(0)} + {\boldsymbol{\Sigma}^{(t)}}^{\hspace{0mm}  1/2} \boldsymbol{\epsilon}^{(t)} 
+\label{eq:x_t_general}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{H}^{(t)}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(t)}\)</span> are
+time-dependent square matrices and <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}^{(t)}\)</span> is a
+zero-mean identity-covariance Gaussian random process with independent
+non-overlapping time intervals. We assume
+<span class="math notranslate nohighlight">\(\mathbf{H}^{(0)} = \mathbf{I}\)</span> and
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(0)} = \mathbf{0}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{H}^{(t)}\)</span> is
+invertible, and
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{(t+\Delta t)}\geq \mathbf{H}^{(t+\Delta t)}{\mathbf{H}^{(t)}}^{-1}\boldsymbol{\Sigma}^{(t)}{{\mathbf{H}^T}^{(t)}}^{-1} {\mathbf{H}^T}^{(t+\Delta t)}\)</span>
+for all elements.</p>
+<p>For the continuous forward stochastic process, <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>
+defined in <span class="xref myst">[eq:x_t]</span>{reference-type=”eqref”
+reference=”eq:x_t”}, we can write the update for a time step <span class="math notranslate nohighlight">\(\Delta t\)</span>
+by combining
+<span class="xref myst">[eq:discrete_forward_update_MTF_NPS]</span>{reference-type=”eqref”
+reference=”eq:discrete_forward_update_MTF_NPS”} and
+<span class="xref myst">[eq:sample_discrete]</span>{reference-type=”eqref”
+reference=”eq:sample_discrete”} as follows: $<span class="math notranslate nohighlight">\(\begin{gathered}
+    \mathbf{x}^{(t+\Delta t)} = \mathbf{H}^{(t + \Delta t)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} + (\boldsymbol{\Sigma}^{(t + \Delta t)} -  {\mathbf{H}^{(t + \Delta t)}}^{\hspace{-0mm} 2} {\mathbf{H}^{(t)}}^{\hspace{0mm}-2} \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}
+    \label{eq:x_t_plus_delta_t}
+\end{gathered}\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\eta}^{(t)}\)</span> is a zero-mean identity-covariance
+Gaussian process. Subtracting <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span> yields</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \mathbf{x}^{(t + \Delta t)} - \mathbf{x}^{(t)}  =  (\mathbf{H}^{(t + \Delta t)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} - \mathbf{I}) \mathbf{x}^{(t)} + (\boldsymbol{\Sigma}^{(t + \Delta t)} -  {\mathbf{H}^{(t+\Delta t)}}^{\hspace{-0mm} 2} {\mathbf{H}^{(t)}}^{\hspace{-3mm}-2} \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}
+    \label{eq:x_t_difference}
+\end{gathered}\]</div>
+<p>The first term of
+<span class="xref myst">[eq:x_t_difference]</span>{reference-type=”eqref”
+reference=”eq:x_t_difference”} can be algebraically rearranged as
+follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    (\mathbf{H}^{(t + \Delta t)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} - \mathbf{I}) \mathbf{x}^{(t)} \\
+    (\mathbf{H}^{(t + \Delta t)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} - \mathbf{H}^{(t)} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}) \mathbf{x}^{(t)} \\
+    (\mathbf{H}^{(t + \Delta t)}  - \mathbf{H}^{(t)}) {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \\
+    \frac{\mathbf{H}^{(t + \Delta t)}  - \mathbf{H}^{(t)}}{\Delta t} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \Delta t \label{eq:first_term}
+\end{gathered}\end{split}\]</div>
+<p>Taking the limit of
+<span class="xref myst">[eq:first_term]</span>{reference-type=”eqref”
+reference=”eq:first_term”} as <span class="math notranslate nohighlight">\(\Delta t\)</span> approaches zero yields</p>
+<div class="math notranslate nohighlight">
+\[\begin{gathered}
+    \lim_{\Delta t \rightarrow 0} \frac{\mathbf{H}^{(t + \Delta t)}  - \mathbf{H}^{(t)}}{\Delta t} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \Delta t = \mathbf{H^{'}}^{(t)}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \text{dt}
+\end{gathered}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\mathbf{H^{'}}^{(t)} = \frac{\text{d}}{\text{dt}} \mathbf{H}^{(t)}\)</span></p>
+<p>The second term of
+<span class="xref myst">[eq:x_t_difference]</span>{reference-type=”eqref”
+reference=”eq:x_t_difference”} can also be algebraically rearranged as
+follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    (\boldsymbol{\Sigma}^{(t + \Delta t)} -  {\mathbf{H}^{(t+\Delta t)}}^{\hspace{-0mm} 2} {\mathbf{H}^{(t)}}^{\hspace{0mm}-2} \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}  \\
+    (\boldsymbol{\Sigma}^{(t + \Delta t)} - ( {\mathbf{H}^{(t+\Delta t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1})^2 \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}  \\
+    (\boldsymbol{\Sigma}^{(t + \Delta t)} - (\mathbf{I} +  {\mathbf{H}^{(t+\Delta t)}}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1} - \mathbf{I})^{2} \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}  \\
+    (\boldsymbol{\Sigma}^{(t + \Delta t)} - (\mathbf{I} +  {\mathbf{H}^{(t+\Delta t)}}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1} -  {\mathbf{H}^{(t)}}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1})^{2} \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}  \\
+    (\boldsymbol{\Sigma}^{(t + \Delta t)} - (\mathbf{I} +  ({\mathbf{H}^{(t+\Delta t)}} -  {\mathbf{H}^{(t)}}) {\mathbf{H}^{(t)}}^{\hspace{0mm}-1})^{2} \boldsymbol{\Sigma}^{(t)} )^{1/2} \boldsymbol{\eta}^{(t)}  \\
+    (\boldsymbol{\Sigma}^{(t + \Delta t)} - (\mathbf{I} +  \frac{{\mathbf{H}^{(t+\Delta t)}} -  {\mathbf{H}^{(t)}}}{\Delta t} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \Delta t)^{2} \boldsymbol{\Sigma}^{(t)} )^{1/2} 
+    \boldsymbol{\eta}^{(t)} \\
+    (\frac{\boldsymbol{\Sigma}^{(t + \Delta t)} - (\mathbf{I} + 
+    2\frac{\mathbf{H}^{(t+\Delta t)} -  {\mathbf{H}^{(t)}}}{\Delta t} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \Delta t + \mathcal{O}(\Delta t^2)) \boldsymbol{\Sigma}^{(t)}}{\Delta t} )^{1/2}
+     \sqrt{\Delta t} \enspace \boldsymbol{\eta}^{(t)} \\
+    (-  2 \frac{{\mathbf{H}^{(t+\Delta t)}} -  {\mathbf{H}^{(t)}}}{\Delta t} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} + \frac{\boldsymbol{\Sigma}^{(t + \Delta t)} - \boldsymbol{\Sigma}^{(t)}}{\Delta t}  - \frac{\mathcal{O}(\Delta t^2)}{\Delta t} \boldsymbol{\Sigma}^{(t)}  )^{1/2} \sqrt{\Delta t} \enspace \boldsymbol{\eta}^{(t)} \label{eq:second_term}
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta t^2)\)</span> indicates second order and higher terms
+of the Taylor expansion. Note, we have made the approximation that
+<span class="math notranslate nohighlight">\(\frac{\mathbf{H}^{(t+\Delta t)} -  {\mathbf{H}^{(t)}}}{\Delta t}\)</span> can
+be considered as a constant with respect to <span class="math notranslate nohighlight">\(\Delta t\)</span> for the purposes
+of the Taylor expansion, which is valid for continuously differentiable
+functions of time in the limit as <span class="math notranslate nohighlight">\(\Delta t\)</span> approaches zero. Taking the
+limit of <span class="xref myst">[eq:second_term]</span>{reference-type=”eqref”
+reference=”eq:second_term”} as <span class="math notranslate nohighlight">\(\Delta t\)</span> approaches zero yields</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \lim_{\Delta t \rightarrow 0} (-  2 \frac{{\mathbf{H}^{(t+\Delta t)}} -  {\mathbf{H}^{(t)}}}{\Delta t} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} + \frac{\boldsymbol{\Sigma}^{(t + \Delta t)} - \boldsymbol{\Sigma}^{(t)}}{\Delta t} + \frac{\mathcal{O}(\Delta t^2)}{\Delta t} \boldsymbol{\Sigma}^{(t)})^{1/2} \sqrt{\Delta t} \enspace \boldsymbol{\eta}^{(t)} \\
+    (-  2 {\mathbf{H^{'}}^{(t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} + \boldsymbol{\Sigma^{'}}^{(t)}  )^{1/2} \mathbf{dw}
+\end{gathered}\end{split}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma^{'}}^{(t)} = \frac{\text{d}}{\text{dt}} \boldsymbol{\Sigma}\)</span>
+and <span class="math notranslate nohighlight">\(\mathbf{dw}\)</span> is infinitesimal white Gaussian noise with covariance,
+<span class="math notranslate nohighlight">\(\text{dt} \mathbf{I}\)</span>. Therefore, the limit of
+<span class="xref myst">[eq:x_t_difference]</span>{reference-type=”eqref”
+reference=”eq:x_t_difference”} as <span class="math notranslate nohighlight">\(\Delta t\)</span> approaches zero is:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{dx} = \mathbf{H^{'}}^{(t)}{\mathbf{H}^{(t)}}^{\hspace{0mm}-1} \mathbf{x}^{(t)} \text{dt} + (-  2 {\mathbf{H^{'}}^{(t)}} {\mathbf{H}^{(t)}}^{\hspace{0mm}-1}  \boldsymbol{\Sigma}^{(t)} + \boldsymbol{\Sigma^{'}}^{(t)}  )^{1/2} \mathbf{dw}\]</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -395,15 +1301,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="TunableNN.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tunable Neural Networks</p>
-      </div>
-    </a>
 </div></div>
   
 </div>
@@ -413,6 +1310,33 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-shift-invariant-systems-with-stationary-gaussian-noise">Linear Shift-Invariant Systems with Stationary Gaussian Noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-stochastic-process-with-mtf-and-nps-control">Discrete-Time Stochastic Process with MTF and NPS Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-time-process-and-stochastic-differential-equations">Continuous-Time Process and Stochastic Differential Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-image-generation-and-supervised-learning">Conditional Image Generation and Supervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#score-matching-loss-function-for-neural-network-training">Score-Matching Loss Function for Neural Network Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-methods-low-dose-ct-image-restoration">Experimental Methods: Low-Dose CT Image Restoration</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-appendix-a-unnumbered">Appendix A {#appendix-a .unnumbered}</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

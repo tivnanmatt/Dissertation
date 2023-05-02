@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>INTRODUCTION {#sec:intro} &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tivnan2019physical';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="Introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">INTRODUCTION {#sec:intro}</a></li>
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tivnanmatt/dissertation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tivnanmatt/dissertation/issues/new?title=Issue%20on%20page%20%2Ftivnan2019physical.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tivnan2019physical.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>INTRODUCTION {#sec:intro}</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">INTRODUCTION {#sec:intro}</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">METHODS</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters">General Physical Model for CT Acquisitions with Spatial-Spectral Filters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-study-on-spatial-spectral-performance">Simulation Study on Spatial-Spectral Performance</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results">RESULTS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-sec-intro">
+<h1>INTRODUCTION {#sec:intro}<a class="headerlink" href="#introduction-sec-intro" title="Permalink to this headline">#</a></h1>
+<p>Multi-contrast agent imaging is an active area of research. For example,
+iodine and gadolinium have been used together in various applications
+including multi-phase kidney and liver imaging [&#64;symons2017photon],
+colonography [&#64;muenzel2016spectral], and post-operational imaging for
+endovascular aneurysm repair [&#64;dangelmaier2018experimental] among
+others. Iodine, gold, and calcium phosphate have also been used as
+target materials to study atherosclerotic plaque composition
+[&#64;cormode2010atherosclerotic; &#64;baturin2012spectral]. New technology
+which allows for decomposition into more material components or improved
+low-concentration estimation will greatly benefit the field of
+multi-contrast imaging.</p>
+<p><img alt="Spectral CT using moving spatial-spectral filters andenergy-integratingdetectors." src="latex_source/tivnan2019physical/figures/system_figure_new" />{#fig:spectralCT width=”50%”}</p>
+<p>Developments have focused on incorporating different and varied spectral
+sensitivities into measurements to enable <em>spectral CT</em>. Methods include
+dual sources [&#64;flohr2006first], kV-switching [&#64;xu2009dual], split
+filters [&#64;rutt1980split], dual-layer-detectors [&#64;carmi2005material], and
+photon-counting detectors [&#64;schlomka2008experimental]. With the
+exception of photon-counting, these methods typically offer only two
+spectral channels.</p>
+<p>A new method to enable spectral CT with ordinary energy-integrating
+detectors is shown in Figure <span class="xref myst">1</span>{reference-type=”ref”
+reference=”fig:spectralCT”}. Specifically, a “spatial-spectral” filter,
+composed of a repeating pattern of K-edge filter materials, is placed in
+front of the x-ray source dividing the full x-ray beam into spectrally
+varied beamlets [&#64;stayman2018model]. The filter is translated parallel
+to the detector as the CT gantry rotates to provide spatially interlaced
+projection data with different spectral channels. Since each spectral
+channel is sparse, conventional reconstruction methods involving
+material decomposition in the projection domain or the image domain are
+ill-suited for data processing. In contrast, a model-based material
+decomposition (MBMD) algorithm [&#64;tilley2018model] permits simultaneous
+processing of all data as well as sophisticated regularization schemes
+(e.g. compressed sensing) to overcome traditional sampling limitations.
+Advantages of the spatial-spectral filter include flexibility in
+spectral shaping, scaling to include more spectral channels, and
+possible low-cost integration into current CT systems. There is also the
+potential to combine this approach with other approaches to extend
+low-concentration performance.</p>
+<p>Preliminary investigations [&#64;stayman2018model] demonstrated the
+feasibility of the spatial-spectral filtering approach under highly
+idealized conditions. In this work, a more accurate physical model is
+developed, taking into account focal spot effects and motion blur
+associated with the moving filter. This more accurate model is used to
+investigate potential performance limitations and to guide future
+spatial-spectral CT system design. Performance is evaluated in a
+multi-contrast digital CT phantom across a range of practical focal spot
+sizes and filter speeds.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="methods">
+<h1>METHODS<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h1>
+<section id="general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters">
+<h2>General Physical Model for CT Acquisitions with Spatial-Spectral Filters<a class="headerlink" href="#general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters" title="Permalink to this headline">#</a></h2>
+<p>A general forward model for spectral CT with varied spectral
+sensitivities and energy-integrating detectors is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    y_i = y(u_i,\theta_i) = \int_E S(u_i,\theta_i,E) \exp{\Big(-\sum_j l_j(u_i,\theta_i)  \mu_j(E) \Big)} dE, \quad \quad \\
+    \mu_j(E) = \sum_k  {\rho}_{j,k} q_k(E) 
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(y_i\)</span> is the <span class="math notranslate nohighlight">\(i^{th}\)</span> measurement, a sample of the projection
+data, <span class="math notranslate nohighlight">\(y(u_i,\theta_i)\)</span>, at detector position, <span class="math notranslate nohighlight">\(u_i\)</span>, and rotation
+angle, <span class="math notranslate nohighlight">\(\theta_i\)</span>. The system spectral response, <span class="math notranslate nohighlight">\(S\)</span>, is
+measurement-dependent, <span class="math notranslate nohighlight">\(l_j\)</span> are projection contributions of the
+<span class="math notranslate nohighlight">\(j^{th}\)</span> voxel, and <span class="math notranslate nohighlight">\(\mu_j(E)\)</span> is the energy-dependent attenuation
+coefficient of the <span class="math notranslate nohighlight">\(j^{th}\)</span> voxel. The latter coefficient is modeled as
+a weighted sum over material index <span class="math notranslate nohighlight">\(k\)</span> of material basis functions
+<span class="math notranslate nohighlight">\(q_k(E)\)</span> weighted by material densities, <span class="math notranslate nohighlight">\(\rho_{j,k}\)</span> for each voxel.
+This model is extremely general. For example, for a kV-switching CT
+system, <span class="math notranslate nohighlight">\(S(u,\theta, E)\)</span> is equal to a high-kV spectrum, <span class="math notranslate nohighlight">\(s_H(E)\)</span> for
+<span class="math notranslate nohighlight">\(\theta_i\)</span> with odd indexes and to a low-kV spectrum <span class="math notranslate nohighlight">\(s_L(E)\)</span> for
+<span class="math notranslate nohighlight">\(\theta_i\)</span> with even views. One may define <span class="math notranslate nohighlight">\(S\)</span> for an ideal
+spatial-spectral CT system as <span class="math notranslate nohighlight">\(S(u,\theta,E) = S_0(u+f(\theta),E)\)</span> where
+<span class="math notranslate nohighlight">\(S_0(u,E)\)</span> represents a spatial function of all beamlet energies across
+the detector (found, e.g., by computing the polyenergetic spectrum that
+exits each sub-filter). The filter is translated laterally according to
+the function <span class="math notranslate nohighlight">\(f(\theta)\)</span> with rotation angle. Unfortunately this model
+excludes some important physical aspects of a real spatial-spectral
+system.</p>
+<p>First, realistic x-ray focal spots are extended resulting in blur of
+objects in the imaging system. While such blur is relatively minor for
+objects at the center of the field-of-view, filters placed near the
+x-ray source will “see” significant blur due to magnification effects.
+This has the effect of mixing the spectra of neighboring beamlets as
+illustrated in Figure <span class="xref myst">2</span>{reference-type=”ref”
+reference=”fig:focalSpotBlur”} and
+<span class="xref myst">3</span>{reference-type=”ref” reference=”fig:spectra”}. For a
+thin filter and a flat detector, this blur is accurately modeled by a
+convolution applied to the ideal spectrum <span class="math notranslate nohighlight">\(S_0\)</span>. We approximate the
+shape of a realistic focal spot distribution using a rectangular kernel,
+<span class="math notranslate nohighlight">\(h_{FS}(u)\)</span>, with width equal to the focal spot width magnified by the
+ratio between the filter-to-detector distance and the source-to-filter
+distance. The second important effect involves the moving filter. In
+particular, for realis andtic CT gantry rotation rates, step-and-shoot
+motion of the filter is impractical. We consider the more realistic case
+where the filter moves continuously including during the detector
+integration interval. For a fixed gantry rotational speed, the
+spatial-spectral sampling profile is defined by
+<span class="math notranslate nohighlight">\(f(\theta) = \alpha \enspace\theta\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> is proportional to
+filter speed. This motion changes both the spatial-spectral sampling
+(Figure <span class="xref myst">5</span>{reference-type=”ref”
+reference=”fig:spectralSampling”}) and imparts an additional spatial
+blur of spectra (Figure <span class="xref myst">4</span>{reference-type=”ref”
+reference=”fig:filterMotionBlur”}) which we model by a convolution with
+a second kernel <span class="math notranslate nohighlight">\(h_M(u)\)</span>. We module this kernel as rectangular with
+width equal to the distance the filter moves per view magnified by the
+ratio of the source-to-detector distance and the source-to-filter
+distance.</p>
+<figure id="fig:spectralBlur">
+<figure id="fig:focalSpotBlur">
+<img src="latex_source/tivnan2019physical/figures/focal_spot_blur" style="height:38mm" />
+<figcaption aria-hidden="true"></figcaption>
+</figure>
+<figure id="fig:spectra">
+<img src="latex_source/tivnan2019physical/figures/spectra" style="height:38mm" />
+<figcaption aria-hidden="true"></figcaption>
+</figure>
+<figure id="fig:filterMotionBlur">
+<img src="latex_source/tivnan2019physical/figures/filter_motion_blur" style="height:38mm" />
+<figcaption aria-hidden="true"></figcaption>
+</figure>
+<figure id="fig:spectralSampling">
+<img src="latex_source/tivnan2019physical/figures/sampling_figure" style="height:38mm" />
+<figcaption aria-hidden="true"></figcaption>
+</figure>
+<figcaption>Focal spot (a), filter motion (c), spectral blur (b), and
+the spectral response, <span
+class="math inline"><em>S</em>(<em>u</em>,<em>θ</em>,<em>E</em>)</span>
+(d).</figcaption>
+</figure>
+<p>Thus, the overall spectral model with these physical effects modeled may
+be written as</p>
+<div class="math notranslate nohighlight">
+\[S(u,\theta,E) = h_M(u) * h_{FS}(u) * S_0 (u + f(\theta),E)\]</div>
+<p>Any filter motion pattern can be chosen and modeled by <span class="math notranslate nohighlight">\(f(\theta)\)</span>, but
+for the remainder of this work we will consider the constant-speed
+linear filter motion given by <span class="math notranslate nohighlight">\(f(\theta) = \alpha \enspace\theta\)</span>. The
+compounding effect of the operators <span class="math notranslate nohighlight">\(h_M(u) * (\cdot{})\)</span> and
+<span class="math notranslate nohighlight">\(h_{FS}(u) * (\cdot{})\)</span> will be a blur of spectra in the projection
+domain. Although the extended focal spot and filter motion can be
+characterized separately, both effects occur together in physical
+acquisitions. The experimental methods presented below include both
+filter motion effects and focal spot blur despite the diagram in Figure
+<span class="xref myst">6</span>{reference-type=”ref”
+reference=”fig:spectralBlur”} which shows the two effects separately.</p>
+</section>
+<section id="simulation-study-on-spatial-spectral-performance">
+<h2>Simulation Study on Spatial-Spectral Performance<a class="headerlink" href="#simulation-study-on-spatial-spectral-performance" title="Permalink to this headline">#</a></h2>
+<p>In general, one would expect that the mixed spectral responses will
+degrade the ability to separate different materials even when those
+spectral are appropriately modeled. The overall impact of filter speed
+on material decomposition performance is potentially more complex. If
+the filter speed is zero, the spatial-spectral sampling is poor. (E.g.,
+For a static filter, the central detector measurement will only be
+probed by a single spectral channel.) However, as the filter speed
+increases, the motion blur effects are more dramatic. For extremely fast
+motion, all spectral channel can potentially blur together. Between
+these two extremes and within the constraints of realistic filter speeds
+there may be an optimum filter speed. Numerical experiments were
+employed to characterize the impact of these physical effects on MBMD
+estimation performance.</p>
+<p>The geometry and sampling conditions for the studies are summarized in
+Table <span class="xref myst">1</span>{reference-type=”ref” reference=”tab:CTgeom”}. A
+digital phantom (Figure <span class="xref myst">7</span>{reference-type=”ref”
+reference=”fig:numericalPhantom”}) of a 100 mm diameter water cylinder
+and several 15mm diameter cylindrical inserts containing various
+mixtures of iodine, gold, and gadolinium was employed. The outer ring
+includes single-contrast inserts of 0.5-4.0 mg/mL concentrations. The
+inner ring includes mixtures of 1.0 mg/mL and 2.0 mg/mL for all
+combinations of two materials. The center of the phantom also includes
+10.0 mg/mL single voxel impulses of each material for regularization
+tuning.</p>
+<figure id="fig:numericalPhantom">
+<p><img src="latex_source/tivnan2019physical/figures/recon_image_ground_truth" alt="image" /> <span
+id="fig:images_ground_truth" label="fig:images_ground_truth"></span></p>
+<figcaption>Ground truth of the numerical phantom. Magenta text
+indicates the density in mg/mL of iodine, gold, or gadolinium
+(corresponding to image subtitle) in cylindrical inserts.</figcaption>
+</figure>
+<p>The filter materials were chosen based on a previous study
+[&#64;stayman2018model] that tested all three and four filter-material
+combinations to maximize multi-contrast-agent concentration estimation
+performance. Specifically, we select a filter comprised of
+0.25 mm-thick, 1.46 mm-wide strips of bismuth, gold, lutetium, and
+erbium. Thus, each spectral beamlet covers an area on the detector that
+is 8 pixels wide. Incident fluence was uniform across the filter and the
+level was adjusted such that the bare-beam fluence for the
+bismuth-filtered beamlet was <span class="math notranslate nohighlight">\(10^5\)</span> photons/pixel.</p>
+<p>In the first numerical experiment, we simulated focal spot widths of
+0.2-4.0 mm and held filter motion speed constant at 131.4 mm/s which
+corresponds to one detector pixel per view after magnification. In the
+second experiment, we simulated filter motion speeds between 50-450 mm/s
+and held the focal spot width constant at 0.4 mm.</p>
+<p>We used the MBMD algorithm with the new models for focal spot blur and
+filter motion effects to reconstruct density distributions for the four
+materials present in the phantom. All numerical experiments used 1000
+iterations of the algorithm. We used a quadratic regularizer with
+material-dependent regularization strengths which were tuned such that
+the FWHM of the PSF corresponding to the 10.0 mg/mL voxel impulse was
+1.8 mm <span class="math notranslate nohighlight">\(\pm\)</span> 0.2 mm for all target materials, focal spot widths, and
+filter motion speeds. Importantly, our current aim is not to analyze the
+impact of a mis-match between the reconstruction model used by the MBMD
+algorithm and the true acquisition parameters. Rather, we implement a
+matched reconstruction model and aim to characterize the image
+degradation when transition between spectra is blurred.</p>
+<p>Root-mean-squared error (RMSE) was used for analysis and was computed by
+first finding the RMSE within regions of interest (ROIs) inside each
+cylindrical insert and then taking the mean across all ROIs. This was
+done separately for each target material.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="results">
+<h1>RESULTS<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h1>
+<p>In the imaging results for the focal spot experiment, the 0.2 mm and
+1.0 mm focal spot width cases are very difficult to distinguish by eye.
+Overall the reconstructed densities are a reasonable approximation of
+the ground truth. The low-contrast 0.5 mg/mL insert is visible in both
+cases which implies that the spatial-spectral filter has the potential
+to improve sensitivity to lower concentrations. A focal spot size of
+1.0mm is fairly standard, so the material decomposition appears to be
+effective in the presence of realistic focal spot blur effects.</p>
+<figure id="fig:trendPlots">
+<figure id="fig:trendFocalSpot">
+<img src="latex_source/tivnan2019physical/figures/trend_FocalSpotWidth_vs_RMSE" />
+<figcaption aria-hidden="true"></figcaption>
+</figure>
+<figure id="fig:trendFilterSpeed">
+<img src="latex_source/tivnan2019physical/figures/trend_FilterSpeed_vs_RMSE" />
+<figcaption aria-hidden="true"></figcaption>
+</figure>
+<figcaption>Error vs focal spot blur (a) and filter motion
+(b).</figcaption>
+</figure>
+<p>For focal spot widths between 0.2-1.0 mm, the final RMSE values were
+less than 0.35 mg/mL for each material. In the case of gadolinium, the
+RMSE was less than 0.18 mg/mL for this range. Larger-than-average focal
+spot widths such as 2.0 mm and 4.0 mm resulted in RMSE values around
+0.47 mg/mL. The overall trend shows that larger focal spot widths lead
+to greater error. However, the change in RMSE is less than 15% between
+the 0.2 mm and 1.0 mm cases for any individual contrast agent so the
+impact is not severe. One notable error is the insert containing
+4.0 mg/mL of iodine on the left side of the image. The reconstructed
+density of iodine is underestimated at 2.75 mg/mL and around 1.25 mg/mL
+is erroneously attributed to gold. This could indicate that for the
+given combination of filter materials, iodine and gold are particularly
+difficult to distinguish. This issue may also be improved with a more
+sophisticated regularization scheme, more spectral channels, or higher
+fluence.</p>
+<p>In the filter speed experiment, RMSE consistently decreased for higher
+filter speeds. For all materials, the RMSE of the 450 mm/s filter speed
+was around 40% lower than the 50 mm/s case. This result would seem to
+indicate that in the realistic range of filter motion speeds, the
+benefits of improved spatial-spectral sampling outweigh the negatives of
+filter motion spectral blur.</p>
+<figure id="fig:reconExample">
+<p><img src="latex_source/tivnan2019physical/figures/recon_image_FSW_1000" alt="image" /> <span
+id="fig:sub1" label="fig:sub1"></span></p>
+<figcaption>Example of a material decomposition result for a focal spot
+width of 1.0mm.</figcaption>
+</figure>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<p>The focal spot blur experiment has shown that error increases as focal
+spot size increases. However, for realistic focal spot sizes between
+0.2 mm and 1.0 mm there is a relatively small change in performance.
+This suggests that, as long as spectra are modeled for each measurement,
+spatial-spectral filters are viable for use with a range of realistic
+x-ray sources. The filter motion experiment demonstrates the importance
+of the spatial-spectral sampling pattern on the MBMD algorithm’s ability
+to separate various target materials. Spectral blur effects from filter
+motion were shown to be outweighed by the benefits of improved sampling
+for the filter speed range in the study. Overall, error decreased as
+filter speed increased - giving finer spectral sampling over projection
+angles. Knowledge of this performance trade-off will be valuable for the
+next stages of this work where choice of filter speed must be balanced
+with the realistic range of speeds that can be precisely controlled in a
+CT acquisition. For example linear motor have been investigated for CT
+filter actuation with speeds up to 5000 mm/s but this is not necessarily
+achievable with sufficient precision or within acceleration constraints.</p>
+<p>In light of the results presented in this work, it would be prudent to
+revisit the optimization of filter design with this improved physical
+model. The order of filter materials may now have a greater impact since
+the spectral blur occurs between neighboring beamlets. We will also need
+to characterize the impact of reconstruction model mismatches and
+develop calibration methods. As we build upon our understanding of this
+new technology, we move closer to the physical implementation of a
+spatial-spectral filter system with the ultimate goal of heightening
+sensitivity to low concentrations and improving material discrimination
+for multi-contrast-enhanced CT.</p>
+<p>This work was supported, in part, by NIH grant R21EB026849.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">INTRODUCTION {#sec:intro}</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">METHODS</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters">General Physical Model for CT Acquisitions with Spatial-Spectral Filters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-study-on-spatial-spectral-performance">Simulation Study on Spatial-Spectral Performance</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results">RESULTS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew Tivnan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
