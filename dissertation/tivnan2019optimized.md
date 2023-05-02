@@ -53,9 +53,9 @@ decomposition with spatial-spectral CT.
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figure id="fig:spatialSpectralSampling">
-<p><img src="figures/CMYK_xi3.png" alt="image" /> <img
-src="figures/CMYK_xi8.png" alt="image" /> <img
-src="figures/CMYK_xi50.png" alt="image" /></p>
+<p><img src="latex_source/tivnan2019optimized/figures/CMYK_xi3.png" alt="image" /> <img
+src="latex_source/tivnan2019optimized/figures/CMYK_xi8.png" alt="image" /> <img
+src="latex_source/tivnan2019optimized/figures/CMYK_xi50.png" alt="image" /></p>
 <figcaption></figcaption>
 </figure>
 <figcaption> (a) Schematic of a spatial-spectral CT system and (b)
@@ -137,7 +137,7 @@ characterizing those regions of operation.
 ## Filter Tile Order
 
 ::: wrapfigure
-r0.64 ![image](figures/filterOrderPlot.png)
+r0.64 ![image](latex_source/tivnan2019optimized/figures/filterOrderPlot.png)
 :::
 
 Results for filter tile order experiment are shown in Figure
@@ -153,7 +153,7 @@ is particularly beneficial or detrimental to performance.
 ## Filter Tile Width
 
 ::: wrapfigure
-r0.52 ![image](figures/filterTileWidthPlot.png)
+r0.52 ![image](latex_source/tivnan2019optimized/figures/filterTileWidthPlot.png)
 :::
 
 Image results for the filter tile width simulations are shown in Figure
@@ -193,16 +193,16 @@ expect improved performance if these redundancies were minimized.
 ::: wrapfigure
 r0.70
 
-![](figures/RGB_x_GT.png){#fig:x_GT}
+![](latex_source/tivnan2019optimized/figures/RGB_x_GT.png){#fig:x_GT}
 
-![](figures/RGB_xi3.png){#fig:xi_3}
+![](latex_source/tivnan2019optimized/figures/RGB_xi3.png){#fig:xi_3}
 
-![](figures/RGB_xi8.png){#fig:xi_8}
+![](latex_source/tivnan2019optimized/figures/RGB_xi8.png){#fig:xi_8}
 
-![](figures/RGB_xi50.png){#fig:xi_50}
+![](latex_source/tivnan2019optimized/figures/RGB_xi50.png){#fig:xi_50}
 
-![image](figures/RYB_colorbar.png)
-![image](figures/colorMixingSubtractive.png)
+![image](latex_source/tivnan2019optimized/figures/RYB_colorbar.png)
+![image](latex_source/tivnan2019optimized/figures/colorMixingSubtractive.png)
 :::
 
 Filter tile order does not appear to have a significant impact on
