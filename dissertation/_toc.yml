@@ -2,14 +2,6 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: Introduction.md
 chapters:
-- file: Instrumentation.md
-- file: Algorithms.md
-- file: ImageQuality.md
-- file: SSF.md
-- file: Hybrid.md
-- file: ImmunoContrast.md
-- file: TunableNN.md
-- file: FourierDiffusion.md
+- file: tivnan2019physical.md
 
