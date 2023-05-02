@@ -14,7 +14,7 @@ multi-contrast imaging.
 
 ![Spectral CT using moving spatial-spectral filters and
 energy-integrating
-detectors.](figures/system_figure_new){#fig:spectralCT width="50%"}
+detectors.](latex_source/tivnan2019physical/figures/system_figure_new){#fig:spectralCT width="50%"}
 
 Developments have focused on incorporating different and varied spectral
 sensitivities into measurements to enable *spectral CT*. Methods include
@@ -118,19 +118,19 @@ distance.
 
 <figure id="fig:spectralBlur">
 <figure id="fig:focalSpotBlur">
-<img src="figures/focal_spot_blur" style="height:38mm" />
+<img src="latex_source/tivnan2019physical/figures/focal_spot_blur" style="height:38mm" />
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figure id="fig:spectra">
-<img src="figures/spectra" style="height:38mm" />
+<img src="latex_source/tivnan2019physical/figures/spectra" style="height:38mm" />
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figure id="fig:filterMotionBlur">
-<img src="figures/filter_motion_blur" style="height:38mm" />
+<img src="latex_source/tivnan2019physical/figures/filter_motion_blur" style="height:38mm" />
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figure id="fig:spectralSampling">
-<img src="figures/sampling_figure" style="height:38mm" />
+<img src="latex_source/tivnan2019physical/figures/sampling_figure" style="height:38mm" />
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figcaption>Focal spot (a), filter motion (c), spectral blur (b), and
@@ -200,7 +200,7 @@ combinations of two materials. The center of the phantom also includes
 tuning.
 
 <figure id="fig:numericalPhantom">
-<p><img src="figures/recon_image_ground_truth" alt="image" /> <span
+<p><img src="latex_source/tivnan2019physical/figures/recon_image_ground_truth" alt="image" /> <span
 id="fig:images_ground_truth" label="fig:images_ground_truth"></span></p>
 <figcaption>Ground truth of the numerical phantom. Magenta text
 indicates the density in mg/mL of iodine, gold, or gadolinium
@@ -254,11 +254,11 @@ effective in the presence of realistic focal spot blur effects.
 
 <figure id="fig:trendPlots">
 <figure id="fig:trendFocalSpot">
-<img src="figures/trend_FocalSpotWidth_vs_RMSE" />
+<img src="latex_source/tivnan2019physical/figures/trend_FocalSpotWidth_vs_RMSE" />
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figure id="fig:trendFilterSpeed">
-<img src="figures/trend_FilterSpeed_vs_RMSE" />
+<img src="latex_source/tivnan2019physical/figures/trend_FilterSpeed_vs_RMSE" />
 <figcaption aria-hidden="true"></figcaption>
 </figure>
 <figcaption>Error vs focal spot blur (a) and filter motion
@@ -289,7 +289,7 @@ benefits of improved spatial-spectral sampling outweigh the negatives of
 filter motion spectral blur.
 
 <figure id="fig:reconExample">
-<p><img src="figures/recon_image_FSW_1000" alt="image" /> <span
+<p><img src="latex_source/tivnan2019physical/figures/recon_image_FSW_1000" alt="image" /> <span
 id="fig:sub1" label="fig:sub1"></span></p>
 <figcaption>Example of a material decomposition result for a focal spot
 width of 1.0mm.</figcaption>

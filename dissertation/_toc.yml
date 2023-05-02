@@ -2,6 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
+root: Introduction.md
 chapters:
 - file: tivnan2019physical.md
-
+- file: tivnan2019optimized.md
