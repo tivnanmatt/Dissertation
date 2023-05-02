@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Introduction &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -60,13 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'FourierDiffusion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -159,6 +160,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="tivnan2019physical.html">INTRODUCTION {#sec:intro}</a></li>
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="tivnan2019optimized.html">Filter Tile Width</a></li>
 
 </ul>
 
@@ -379,7 +382,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <p>Denoising diffusion probabilistic models
 [&#64;sohl2015deep; &#64;ho2020denoising] and closely-related score-based
 generative models through stochastic differential equations
@@ -424,9 +427,9 @@ and results for image restoration of low-radiation-dose CT measurements
 to demonstrate one practical application of the proposed method.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="methods">
-<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h1>
+<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h1>
 <section id="linear-shift-invariant-systems-with-stationary-gaussian-noise">
-<h2>Linear Shift-Invariant Systems with Stationary Gaussian Noise<a class="headerlink" href="#linear-shift-invariant-systems-with-stationary-gaussian-noise" title="Permalink to this headline">#</a></h2>
+<h2>Linear Shift-Invariant Systems with Stationary Gaussian Noise<a class="headerlink" href="#linear-shift-invariant-systems-with-stationary-gaussian-noise" title="Permalink to this heading">#</a></h2>
 <p>In this section, we describe the theoretical background for LSI systems
 with ASGN. This is a standard mathematical model used to evaluate the
 spatial resolution and noise covariance of medical imaging systems in
@@ -470,7 +473,7 @@ argument, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, para
 <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_\mathbf{v}\)</span>.</p>
 </section>
 <section id="discrete-time-stochastic-process-with-mtf-and-nps-control">
-<h2>Discrete-Time Stochastic Process with MTF and NPS Control<a class="headerlink" href="#discrete-time-stochastic-process-with-mtf-and-nps-control" title="Permalink to this headline">#</a></h2>
+<h2>Discrete-Time Stochastic Process with MTF and NPS Control<a class="headerlink" href="#discrete-time-stochastic-process-with-mtf-and-nps-control" title="Permalink to this heading">#</a></h2>
 <p><img alt="A probabilistic graphical model for the stochastic process, consistingof linear shift invariant systems and additive stationary Gaussiannoise. The measurement-conditioned diffusion model, in light purple, istrained to approximate the reverse process, in darkpurple." src="figures/ddpm_cartoon.png" />{#fig:network_diagram
 width=”\textwidth”}</p>
 <p>Consider a sequence of LSI systems with ASGN resulting in a
@@ -575,7 +578,7 @@ forward update rule in terms of the prescribed MTF and NPS:</p>
 \end{gathered}\]</div>
 </section>
 <section id="continuous-time-process-and-stochastic-differential-equations">
-<h2>Continuous-Time Process and Stochastic Differential Equations<a class="headerlink" href="#continuous-time-process-and-stochastic-differential-equations" title="Permalink to this headline">#</a></h2>
+<h2>Continuous-Time Process and Stochastic Differential Equations<a class="headerlink" href="#continuous-time-process-and-stochastic-differential-equations" title="Permalink to this heading">#</a></h2>
 <p>Consider a continuous-time stochastic process, <span class="math notranslate nohighlight">\(\mathbf{x}^{(t)}\)</span>, given
 by:</p>
 <div class="math notranslate nohighlight">
@@ -695,7 +698,7 @@ approximation with convolutional neural networks, which are also
 composed of shift-invariant operations.</p>
 </section>
 <section id="conditional-image-generation-and-supervised-learning">
-<h2>Conditional Image Generation and Supervised Learning<a class="headerlink" href="#conditional-image-generation-and-supervised-learning" title="Permalink to this headline">#</a></h2>
+<h2>Conditional Image Generation and Supervised Learning<a class="headerlink" href="#conditional-image-generation-and-supervised-learning" title="Permalink to this heading">#</a></h2>
 <p>The reverse-time stochastic differential equation in
 <span class="xref myst">[eq:reverse_SDE_unconditional]</span>{reference-type=”eqref”
 reference=”eq:reverse_SDE_unconditional”} applies to unconditional image
@@ -763,7 +766,7 @@ shift-invariant blur and stationary correlated noise.</p>
 width=”95%”}</p>
 </section>
 <section id="score-matching-loss-function-for-neural-network-training">
-<h2>Score-Matching Loss Function for Neural Network Training<a class="headerlink" href="#score-matching-loss-function-for-neural-network-training" title="Permalink to this headline">#</a></h2>
+<h2>Score-Matching Loss Function for Neural Network Training<a class="headerlink" href="#score-matching-loss-function-for-neural-network-training" title="Permalink to this heading">#</a></h2>
 <p>It is possible to train a neural network to estimate the score function
 in order to run an approximation of the reverse process, allowing for
 conditional or unconditional generative modeling. We assume the inputs
@@ -864,7 +867,7 @@ Euler-Maryuama method, as shown below:</p>
 Gaussian noise with independent time steps.</p>
 </section>
 <section id="experimental-methods-low-dose-ct-image-restoration">
-<h2>Experimental Methods: Low-Dose CT Image Restoration<a class="headerlink" href="#experimental-methods-low-dose-ct-image-restoration" title="Permalink to this headline">#</a></h2>
+<h2>Experimental Methods: Low-Dose CT Image Restoration<a class="headerlink" href="#experimental-methods-low-dose-ct-image-restoration" title="Permalink to this heading">#</a></h2>
 <p>In this section, we describe an implementation of our proposed method
 for low-dose CT image restoration. We used the publicly available Lung
 Image Database Consortium (LIDC) dataset, which consists of
@@ -1022,7 +1025,7 @@ width=”99%”}</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="results">
-<h1>Results<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h1>
+<h1>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h1>
 <p>An example of the forward and reverse process for scalar diffusion
 models is displayed in Figure
 <span class="xref myst">6</span>{reference-type=”ref”
@@ -1121,7 +1124,7 @@ similar mean squared error to scalar diffusion models using 128 or even
 for these results.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
 <p>The results of the experiments in the previous section show that Fourier
 diffusion models achieve higher performance than scalar diffusion models
 across multiple image quality metrics and number of time steps. The
@@ -1177,7 +1180,7 @@ images. </figcaption>
 </figure>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="appendix-a-appendix-a-unnumbered">
-<h1>Appendix A {#appendix-a .unnumbered}<a class="headerlink" href="#appendix-a-appendix-a-unnumbered" title="Permalink to this headline">#</a></h1>
+<h1>Appendix A {#appendix-a .unnumbered}<a class="headerlink" href="#appendix-a-appendix-a-unnumbered" title="Permalink to this heading">#</a></h1>
 <p>Consider a stochastic process defined by the following</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x}^{(t)} = \mathbf{H}^{(t)} \mathbf{x}^{(0)} + {\boldsymbol{\Sigma}^{(t)}}^{\hspace{0mm}  1/2} \boldsymbol{\epsilon}^{(t)} 

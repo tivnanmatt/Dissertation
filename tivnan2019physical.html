@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>INTRODUCTION {#sec:intro} &#8212; Statistical Methods for Spectral CT Imaging and Material Decomposition</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -60,14 +61,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tivnan2019physical';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Filter Tile Width" href="tivnan2019optimized.html" />
     <link rel="prev" title="&lt;no title&gt;" href="Introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -160,6 +162,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">INTRODUCTION {#sec:intro}</a></li>
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="tivnan2019optimized.html">Filter Tile Width</a></li>
 
 </ul>
 
@@ -375,7 +379,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-sec-intro">
-<h1>INTRODUCTION {#sec:intro}<a class="headerlink" href="#introduction-sec-intro" title="Permalink to this headline">#</a></h1>
+<h1>INTRODUCTION {#sec:intro}<a class="headerlink" href="#introduction-sec-intro" title="Permalink to this heading">#</a></h1>
 <p>Multi-contrast agent imaging is an active area of research. For example,
 iodine and gadolinium have been used together in various applications
 including multi-phase kidney and liver imaging [&#64;symons2017photon],
@@ -425,9 +429,9 @@ multi-contrast digital CT phantom across a range of practical focal spot
 sizes and filter speeds.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="methods">
-<h1>METHODS<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h1>
+<h1>METHODS<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h1>
 <section id="general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters">
-<h2>General Physical Model for CT Acquisitions with Spatial-Spectral Filters<a class="headerlink" href="#general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters" title="Permalink to this headline">#</a></h2>
+<h2>General Physical Model for CT Acquisitions with Spatial-Spectral Filters<a class="headerlink" href="#general-physical-model-for-ct-acquisitions-with-spatial-spectral-filters" title="Permalink to this heading">#</a></h2>
 <p>A general forward model for spectral CT with varied spectral
 sensitivities and energy-integrating detectors is</p>
 <div class="math notranslate nohighlight">
@@ -522,7 +526,7 @@ filter motion effects and focal spot blur despite the diagram in Figure
 reference=”fig:spectralBlur”} which shows the two effects separately.</p>
 </section>
 <section id="simulation-study-on-spatial-spectral-performance">
-<h2>Simulation Study on Spatial-Spectral Performance<a class="headerlink" href="#simulation-study-on-spatial-spectral-performance" title="Permalink to this headline">#</a></h2>
+<h2>Simulation Study on Spatial-Spectral Performance<a class="headerlink" href="#simulation-study-on-spatial-spectral-performance" title="Permalink to this heading">#</a></h2>
 <p>In general, one would expect that the mixed spectral responses will
 degrade the ability to separate different materials even when those
 spectral are appropriately modeled. The overall impact of filter speed
@@ -587,7 +591,7 @@ done separately for each target material.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="results">
-<h1>RESULTS<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h1>
+<h1>RESULTS<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h1>
 <p>In the imaging results for the focal spot experiment, the 0.2 mm and
 1.0 mm focal spot width cases are very difficult to distinguish by eye.
 Overall the reconstructed densities are a reasonable approximation of
@@ -637,7 +641,7 @@ width of 1.0mm.</figcaption>
 </figure>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
 <p>The focal spot blur experiment has shown that error increases as focal
 spot size increases. However, for realistic focal spot sizes between
 0.2 mm and 1.0 mm there is a relatively small change in performance.
@@ -707,6 +711,15 @@ for multi-contrast-enhanced CT.</p>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="tivnan2019optimized.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Filter Tile Width</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
